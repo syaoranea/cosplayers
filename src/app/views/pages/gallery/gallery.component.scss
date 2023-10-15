@@ -1,0 +1,21 @@
+#body-content {
+  height: 92vh;
+}
+
+.scroll-container {
+  width: 100%; /* Largura do contêiner, ajuste conforme necessário */
+  height: 100%; /* Altura do contêiner, ajuste conforme necessário */
+  position: relative; /* Permite posicionar o conteúdo interno */
+}
+
+.scroll-image {
+  position: absolute; /* Permite posicionar a imagem dentro do contêiner */
+  animation: scrollImage 100s linear infinite; /* 10s é a duração da animação */
+}
+
+@media (max-width: 768px) {
+  #body-content {
+    height: 88vh;
+  }
+}
+
