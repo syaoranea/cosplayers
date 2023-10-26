@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BlogComponent } from './blog.component';
+import { ThanksComponent } from './thanks.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
+
 const routes: Routes = [
-
-  {
-    path: '',
-    component: BlogComponent,
-  },
-
+  { path: '', component: ThanksComponent }
 ];
 
 @NgModule({
-  declarations: [BlogComponent],
+  declarations: [
+    ThanksComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes)
   ]
 })
-export class BlogModule { }
+export class ThanksModule { }

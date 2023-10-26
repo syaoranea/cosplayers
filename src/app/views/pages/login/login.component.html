@@ -1,0 +1,197 @@
+<app-header></app-header>
+
+<div id="body-content">
+
+
+  <!-- ================================
+  ///// Begin page header section /////
+  ================================= -->
+  <section id="page-header-secion" class="alter-heading">
+
+    <!-- Begin page header image
+    ===============================
+    * Use class "parallax" to enable parallax effect.
+    -->
+    <div class="page-header-image parallax bg-image" style="background-image: url(assets/img/headings/heading-12.jpg); background-position: 50% 50%;"></div>
+    <!-- End page header image -->
+
+    <!-- Element cover -->
+    <div class="cover page-header-cover"></div>
+
+    <!-- Begin page header info -->
+    <div class="container page-header-content no-padding max-width-800 text-center">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <h1 class="album-title">Login/Register</h1>
+          <ol class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Page - Login/Register</li>
+          </ol>
+
+        </div> <!-- /.col -->
+      </div> <!-- /.row -->
+    </div>
+    <!-- End page header info -->
+
+  </section>
+  <!-- End page header section -->
+
+
+  <!-- ================================
+  /////// Begin content section ///////
+  ================================= -->
+  <section id="content-section" class="page">
+    <div *ngIf="auth.user">logado
+      <button (click)="logout()">sair</button>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+          <!-- Begin content wrap -->
+          <div class="content-wrap">
+            <div class="row">
+
+              <!-- Left column -->
+              <div class="col-lg-8 col-md-6 margin-bottom-30">
+
+                <!-- Begin tabs -->
+                <div class="tabs-wrap">
+
+                  <!-- Nav tabs
+                  ==============
+                  * Use class "nav-pills" or "nav-tabs" to style tabs.
+                  * Use class "text-center" or "text-right" to aling tabs.
+                  * Use class "nav-justified" to enable equal widths tabs.
+                  -->
+                  <ul class="nav nav-tabs nav-justified" role="tablist">
+                    <li role="presentation" class="active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>
+                    <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
+                  </ul> <!-- /.nav-tabs -->
+
+                  <!-- Tabs content -->
+                  <div class="tab-content">
+                    <div role="tabpanel" class="fade tab-pane in active" id="login">
+
+                      <div class="login-wrapper margin-top-50">
+                        <h4><i class="fas fa-users"></i> Login</h4>
+
+                        <!-- Begin login form -->
+                        <form [formGroup]="formUser" id="login-form" class="margin-top-40" (ngSubmit)="onSubmit()">
+                          <div class="form-group">
+                            <input type="text" class="form-control" name="username" formControlName="email" placeholder="Enter Your Username" required>
+                          </div>
+                          <div class="form-group no-margin-bottom">
+                            <input type="password" class="form-control" name="password" formControlName="password" placeholder="Enter Your Password" required>
+                          </div>
+                          <button type="submit" class="btn btn-primary btn-rounded-5x btn-block margin-top-40">Login</button>
+                        </form>
+                        <!-- End login form -->
+
+                        <div class="row margin-top-20">
+                          <div class="col-lg-4">
+                            <a href="#" class="btn btn-social btn-facebook btn-block btn-rounded-5x">
+                              <span class="btn-social-icon"><i class="fab fa-facebook-f"></i></span> Facebook Login
+                            </a>
+                          </div> <!-- /.col -->
+
+                          <div class="col-lg-4">
+                            <a href="#" class="btn btn-social btn-twitter btn-block btn-rounded-5x">
+                              <span class="btn-social-icon"><i class="fab fa-twitter"></i></span> Twitter Login
+                            </a>
+                          </div> <!-- /.col -->
+
+                          <div class="col-lg-4">
+                            <button  (click)="googleLogin()" class="btn btn-social btn-google btn-block btn-rounded-5x">
+                              <span class="btn-social-icon"><i class="fab fa-google-plus-g"></i></span> Google+ Login
+                            </button>
+                          </div> <!-- /.col -->
+                        </div> <!-- /.row -->
+
+                      </div> <!-- /.login-wrapper -->
+
+                    </div> <!-- /.tab-pane -->
+
+                    <div role="tabpanel" class="fade tab-pane" id="register">
+
+                      <div class="register-wrapper margin-top-40">
+                        <h4><i class="fas fa-plug"></i> Register An Account</h4>
+                        <p class="small">All fields are required!</p>
+
+                        <!-- Begin register form -->
+                        <form id="register-form" class="margin-top-30">
+                          <div class="form-group">
+                            <input type="text" class="form-control" name="first-name" placeholder="Enter your first name" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="text" class="form-control" name="last-name" placeholder="Enter your last name" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="email" class="form-control" name="email" placeholder="Enter your email address" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="email" class="form-control" name="re-enter-email" placeholder="Re-Enter your email address" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Choose your username" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Choose password" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="password" class="form-control" name="re-enter-password" placeholder="Re-enter your password" required>
+                          </div>
+                          <div class="form-group margin-top-40">
+                            <label>
+                              <input type="checkbox" required> Accept our <a href="#" target="_blank">Privacy Policy</a> and <a href="#" target="_blank">Customer Agreement</a>
+                            </label>
+                          </div>
+
+                          <button type="submit" class="btn btn-primary btn-rounded-5x btn-block margin-top-30">Register Now</button>
+                        </form>
+                        <!-- End register form -->
+
+                      </div> <!-- /.register-wrapper -->
+
+                    </div> <!-- /.tab-pane -->
+                  </div> <!-- /.tab-content -->
+
+                </div>
+                <!-- End tabs -->
+
+              </div> <!-- /.col -->
+
+              <!-- Right column -->
+              <div class="col-lg-4 col-md-6">
+
+                <!-- Begin sidebar
+                =================== -->
+                <div class="sidebar sidebar-right">
+
+                  <h3 class="sidebar-heading">Information</h3>
+                  <hr class="hr-short">
+                  <p>Fuga laboriosam, quisquam quam saepe, magnam neque vel itaque, consequuntur distinctio odit doloremque non dolor totam. Quidem laudantium magnam.</p>
+
+                  <p>Wuos nemo alias architecto, accusantium tempora attes nam conse quuntur ab sunt.</p>
+                  <a href="" class="btn btn-dark btn-rounded-5x btn-block margin-top-40">More Info...</a>
+
+                </div>
+                <!-- End sidebar -->
+
+              </div> <!-- /.col -->
+
+            </div> <!-- /.row -->
+          </div>
+          <!-- End content wrap -->
+
+        </div> <!-- /.col -->
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+
+  </section>
+  <!-- End content section -->
+
+</div>
+
+<app-footer></app-footer>

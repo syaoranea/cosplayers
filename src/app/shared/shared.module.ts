@@ -4,16 +4,26 @@ import { PreloaderComponent } from './components/preloader/preloader.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { ProcurarComponent } from './components/procurar/procurar.component';
+import { BlogCategoriasComponent } from './components/blog-categorias/blog-categorias.component';
+import { PostsRecentesComponent } from './components/posts-recentes/posts-recentes.component';
+import { TagsPopularesComponent } from './components/tags-populares/tags-populares.component';
+import { PhotoStreamComponent } from './components/photo-stream/photo-stream.component';
+import { InscricaoComponent } from './components/inscricao/inscricao.component';
 
 
 
 @NgModule({
-  declarations: [PreloaderComponent, HeaderComponent, FooterComponent],
+  declarations: [PreloaderComponent, HeaderComponent, FooterComponent, ProcurarComponent, BlogCategoriasComponent, PostsRecentesComponent, TagsPopularesComponent, PhotoStreamComponent, InscricaoComponent],
   imports: [CommonModule, RouterModule],
   exports: [
     PreloaderComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ProcurarComponent,
+    BlogCategoriasComponent,
+    PostsRecentesComponent,
+    TagsPopularesComponent, PhotoStreamComponent, InscricaoComponent
   ]
 })
 export class SharedModule { }
