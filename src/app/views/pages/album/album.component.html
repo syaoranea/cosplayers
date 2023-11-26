@@ -32,6 +32,8 @@
               <li><a href="index.html">Home</a></li>
               <li class="active">Galeria - Anime</li>
             </ol>
+            <div *ngIf="user">{{ usuario }} <a (click)="logOut()">(logout)</a></div>
+
 
           </div> <!-- /.col -->
         </div> <!-- /.row -->

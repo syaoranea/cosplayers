@@ -1,41 +1,97 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from 'firebase/compat/app';
+import { Injectable, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 import 'firebase/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
+import { GoogleAuthProvider } from '@angular/fire/auth';
+
+export interface User {
+  uid: string;
+  email: string;
+  displayName: string;
+  photoURL: string;
+  emailVerified: boolean;
+}
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
+
+
 export class AuthService {
   user: any;
   error: any;
 
+  userData: any;
 
-  constructor(private auth: AngularFireAuth) { }
+  constructor(
+    private firebaseAuthenticationService: AngularFireAuth,
+    private router: Router,
+    private ngZone: NgZone
+  ) {
+    // OBSERVER save user in localStorage (log-in) and setting up null when log-out
+    this.firebaseAuthenticationService.authState.subscribe((user) => {
+      if (user) {
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+      } else {
+        localStorage.setItem('user', 'null');
+      }
+    })
 
-  async login(email: string, password: string) {
-    try {
-      const credetial = await this.auth.signInWithEmailAndPassword(email, password);
-     this.user = credetial.user;
-     console.log("logou")
-    } catch (error) {
-      this.error = error;
-    }
   }
 
-  async googleLogin() {
-    try {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      const credetial = await this.auth.signInWithPopup(provider);
-      this.user = credetial.user;
-      console.log("logou")
-    } catch (error) {
-      this.error = error;
-      console.log("erro", this.error)
-    }
+  // log-in with email and password
+  logInWithEmailAndPassword(email: string, password: string) {
+    return this.firebaseAuthenticationService.signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        this.userData = userCredential.user
+        this.observeUserState()
+      })
+      .catch((error) => {
+        alert(error.message);
+      })
   }
-    async logout() {
-      await this.auth.signOut();
-      this.user = null;
+
+  // log-in with google
+  logInWithGoogleProvider() {
+    return this.firebaseAuthenticationService.signInWithPopup(new GoogleAuthProvider())
+      .then(() => this.observeUserState())
+      .catch((error: Error) => {
+        alert(error.message);
+      })
   }
+
+  // sign-up with email and password
+  signUpWithEmailAndPassword(email: string, password: string) {
+    return this.firebaseAuthenticationService.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        this.userData = userCredential.user
+        console.log(this.userData)
+        this.observeUserState()
+      })
+      .catch((error) => {
+        alert(error.message);
+      })
+  }
+
+  observeUserState() {
+    this.firebaseAuthenticationService.authState.subscribe((userState) => {
+      userState && this.ngZone.run(() => this.router.navigate(['album']))
+    })
+  }
+
+  // return true when user is logged in
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== null;
+  }
+
+  // logOut
+  logOut() {
+    return this.firebaseAuthenticationService.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['login']);
+    })
+  }
+
 }

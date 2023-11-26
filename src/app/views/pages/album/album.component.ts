@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 
 declare var Isotope: any;
@@ -11,16 +12,19 @@ declare var $: any;
 })
 
 export class AlbumComponent implements AfterViewInit {
-  
+
   @ViewChild('grid') grid!: ElementRef;
 
   isotope: any;
   loading: boolean = false;
   filter = false;
+  user: any;
+  usuario: string;
   constructor(
     private loadingService: LoadingService,
     private el: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private authService: AuthService
   ){}
 
   ngAfterViewInit() {
@@ -31,9 +35,19 @@ export class AlbumComponent implements AfterViewInit {
       this.loadingService.hide();
       this.loading = true;
       this.onLayout();
+      this.iUserIn();
     }, 1000);
+
   }
 
+  iUserIn() {
+    this.user = JSON.parse(localStorage.getItem('user')!);
+    this.usuario = this.user.displayName;
+  }
+
+  logOut() {
+    this.authService.logOut();
+  }
   onLayout(){
     const container = this.el.nativeElement;
     // Initialize Isotope with your desired options

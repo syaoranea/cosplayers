@@ -42,7 +42,7 @@
   /////// Begin content section ///////
   ================================= -->
   <section id="content-section" class="page">
-    <div *ngIf="auth.user">logado
+    <div *ngIf="authService.user">logado
       <button (click)="logout()">sair</button>
     </div>
     <div class="container">
@@ -90,20 +90,9 @@
                         <!-- End login form -->
 
                         <div class="row margin-top-20">
+                          
                           <div class="col-lg-4">
-                            <a href="#" class="btn btn-social btn-facebook btn-block btn-rounded-5x">
-                              <span class="btn-social-icon"><i class="fab fa-facebook-f"></i></span> Facebook Login
-                            </a>
-                          </div> <!-- /.col -->
-
-                          <div class="col-lg-4">
-                            <a href="#" class="btn btn-social btn-twitter btn-block btn-rounded-5x">
-                              <span class="btn-social-icon"><i class="fab fa-twitter"></i></span> Twitter Login
-                            </a>
-                          </div> <!-- /.col -->
-
-                          <div class="col-lg-4">
-                            <button  (click)="googleLogin()" class="btn btn-social btn-google btn-block btn-rounded-5x">
+                            <button  class="btn btn-social btn-google btn-block btn-rounded-5x" (click)="logInWithGoogle()">
                               <span class="btn-social-icon"><i class="fab fa-google-plus-g"></i></span> Google+ Login
                             </button>
                           </div> <!-- /.col -->

@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
-
   { path: '', redirectTo: 'gallery', pathMatch: 'full' },
   {path: 'gallery', loadChildren: () => import('./views/pages/gallery/gallery.module').then(m => m.GalleryModule)},
   {path: 'contact', loadChildren: () => import('./views/pages/contact/contact.module').then(m => m.ContactModule)},
   {path: 'album', loadChildren: () => import('./views/pages/album/album.module').then(m => m.AlbumModule)},
-  {path: 'blog', loadChildren: () => import('./views/pages/blog/blog.module').then(m => m.BlogModule)},
+  {path: 'blog', loadChildren: () => import('./views/pages/blog/blog.module').then(m => m.BlogModule),  canActivate: [AuthGuard] },
   {path: 'eventos', loadChildren: () => import('./views/pages/eventos/eventos.module').then(m => m.EventosModule)},
   {path: 'obrigado', loadChildren: () => import('./views/pages/thanks/thanks.module').then(m => m.ThanksModule)},
   {path: 'noticia', loadChildren: () => import('./views/pages/news/news.module').then(m => m.NewsModule)},
@@ -18,4 +18,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
