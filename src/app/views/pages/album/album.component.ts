@@ -1,6 +1,9 @@
 import { AfterViewInit, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { map } from 'rxjs';
+import { Photo } from 'src/app/shared/interface/photo';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { LoadingService } from 'src/app/shared/services/loading.service';
+import { PhotosService } from 'src/app/shared/services/photos.service';
 
 declare var Isotope: any;
 declare var $: any;
@@ -20,12 +23,45 @@ export class AlbumComponent implements AfterViewInit {
   filter = false;
   user: any;
   usuario: string;
+  submitted = false;
+  currentTutorial?: Photo;
+  currentIndex = -1;
+  title = '';
+  photos?: Photo[];
   constructor(
     private loadingService: LoadingService,
     private el: ElementRef,
-    private renderer: Renderer2,
-    private authService: AuthService
+    private authService: AuthService,
+    private servicePhoto: PhotosService,
   ){}
+
+  photoData: Photo = new Photo;
+  ngOnInit(): void {
+    this.retrievePhotos();
+  }
+
+  retrievePhotos(): void {
+    this.servicePhoto.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.photos = data;
+    });
+  }
+
+  refreshList(): void {
+    this.currentTutorial = undefined;
+    this.currentIndex = -1;
+    this.retrievePhotos();
+  }
+
+  setActivePhoto(photo: Photo, index: number): void {
+    this.currentTutorial = photo;
+    this.currentIndex = index;
+  }
 
   ngAfterViewInit() {
     this.loading =true

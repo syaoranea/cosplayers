@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { UploadFormComponent } from './components/upload-form/upload-form.component';
+import { UploadListComponent } from './components/upload-list/upload-list.component';
+import { UploadDetailsComponent } from './components/upload-details/upload-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'gallery', pathMatch: 'full' },
@@ -12,6 +15,11 @@ const routes: Routes = [
   {path: 'obrigado', loadChildren: () => import('./views/pages/thanks/thanks.module').then(m => m.ThanksModule)},
   {path: 'noticia', loadChildren: () => import('./views/pages/news/news.module').then(m => m.NewsModule)},
   {path: 'login', loadChildren: () => import('./views/pages/login/login.module').then(m => m.LoginModule)},
+  {path: 'addphoto',  loadChildren: () => import('./views/pages/addphoto/addphoto.module').then(m => m.AddPhotoModule) },
+  {path: 'upload', component: UploadFormComponent},
+  {path: 'upload-list', component: UploadListComponent},
+  {path: 'upload-details', component: UploadDetailsComponent},
+
 ];
 
 @NgModule({
