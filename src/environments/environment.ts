@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8080',
+  LIGHT_GALLERY_LICENSE_KEY: 'EB67CC7A-6AEA-4C6A-BD98-8307493C1577',
 };
 
 /*

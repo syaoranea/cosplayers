@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { Photo } from 'src/app/shared/interface/photo';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -28,11 +29,13 @@ export class AlbumComponent implements AfterViewInit {
   currentIndex = -1;
   title = '';
   photos?: Photo[];
+  uniqueAlbums: Set<string> = new Set<string>();
   constructor(
     private loadingService: LoadingService,
     private el: ElementRef,
     private authService: AuthService,
     private servicePhoto: PhotosService,
+    private route: Router,
   ){}
 
   photoData: Photo = new Photo;
@@ -48,7 +51,16 @@ export class AlbumComponent implements AfterViewInit {
         )
       )
     ).subscribe(data => {
-      this.photos = data;
+      this.uniqueAlbums.clear();
+
+      // Filtra as fotos mantendo apenas uma por álbum
+      this.photos = data.filter(photo => {
+        if (!this.uniqueAlbums.has(photo.album)) {
+          this.uniqueAlbums.add(photo.album);
+          return true;
+        }
+        return false;
+      });
     });
   }
 
@@ -105,6 +117,14 @@ export class AlbumComponent implements AfterViewInit {
 
   filterAll() {
     this.isotope.arrange({ filter: '*' });
+  }
+
+  goToPhoto() {
+    this.route.navigate(['/photos'])
+  }
+
+  get quantidadeItens(): number {
+    return this.photos.length;
   }
 
 }

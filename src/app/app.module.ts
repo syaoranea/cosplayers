@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
-
 import { environment } from 'src/environments/environment.prod';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -15,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UploadFormComponent } from './components/upload-form/upload-form.component';
 import { UploadListComponent } from './components/upload-list/upload-list.component';
 import { UploadDetailsComponent } from './components/upload-details/upload-details.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +30,7 @@ import { UploadDetailsComponent } from './components/upload-details/upload-detai
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     ReactiveFormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

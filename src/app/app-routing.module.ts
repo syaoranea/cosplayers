@@ -16,6 +16,7 @@ const routes: Routes = [
   {path: 'noticia', loadChildren: () => import('./views/pages/news/news.module').then(m => m.NewsModule)},
   {path: 'login', loadChildren: () => import('./views/pages/login/login.module').then(m => m.LoginModule)},
   {path: 'addphoto',  loadChildren: () => import('./views/pages/addphoto/addphoto.module').then(m => m.AddPhotoModule) },
+  {path: 'photos/:id', loadChildren: () => import('./views/pages/photos/photos.module').then(m => m.PhotosModule)},
   {path: 'upload', component: UploadFormComponent},
   {path: 'upload-list', component: UploadListComponent},
   {path: 'upload-details', component: UploadDetailsComponent},

@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   apiUrl: 'http://localhost:8080',
+  LIGHT_GALLERY_LICENSE_KEY: 'EB67CC7A-6AEA-4C6A-BD98-8307493C1577',
   firebaseConfig: {
   apiKey: "AIzaSyCu4uQNgIDAgbK8qcf1NmxctQ2nLNUvtRA",
   authDomain: "gallery-cosplay-9027c.firebaseapp.com",

@@ -1,28 +1,33 @@
 
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
-import { AlbumComponent } from './album.component';
+import { PhotosComponent } from '../photos/photos.component';
+import { LightgalleryModule } from 'lightgallery/angular';
 
 const routes: Routes = [
 
   {
     path: '',
-    component: AlbumComponent,
+    component: PhotosComponent,
+  },
+  {
+    path: 'Natalino/:id',
+    component: PhotosComponent,
   },
 
 ];
 
 @NgModule({
-  declarations: [AlbumComponent],
+  declarations: [ PhotosComponent],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
-
+    LightgalleryModule
   ]
 })
 
-export class AlbumModule { }
+
+export class PhotosModule { }

@@ -1,6 +1,6 @@
 /* -------------------------------------------------------------
 * Template dark stylesheet
-* 
+*
 * Template:		Agatha -	Photography Portfolio Website Template
 * Author:		Themetorium
 * URL:			https://themetorium.net
@@ -36,13 +36,13 @@ body, #body-content {
 .navbar-default .navbar-nav > li > a {
 	color: #999;
 }
-.navbar-default .navbar-nav > li > a:focus, 
+.navbar-default .navbar-nav > li > a:focus,
 .navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > .active > a, 
-.navbar-default .navbar-nav > .active > a:focus, 
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
 .navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .open > a, 
-.navbar-default .navbar-nav > .open > a:focus, 
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus,
 .navbar-default .navbar-nav > .open > a:hover {
 	color: #FFF;
 }
@@ -51,14 +51,14 @@ body, #body-content {
 .navbar-border-bottom .navbar-nav > li > a {
 	color: #999;
 }
-.navbar-border-bottom .navbar-nav > li > a:focus, 
+.navbar-border-bottom .navbar-nav > li > a:focus,
 .navbar-border-bottom .navbar-nav > li > a:hover,
-.navbar-border-bottom .navbar-nav > .active > a, 
-.navbar-border-bottom .navbar-nav > .active > a:focus, 
+.navbar-border-bottom .navbar-nav > .active > a,
+.navbar-border-bottom .navbar-nav > .active > a:focus,
 .navbar-border-bottom .navbar-nav > .active > a:hover {
 	color: #FFF;
 }
-.navbar-border-bottom .navbar-nav > li > a:before, 
+.navbar-border-bottom .navbar-nav > li > a:before,
 .navbar-border-bottom .navbar-nav > li > a:focus:before {
 	border-bottom-color: #DDD;
 }
@@ -70,19 +70,19 @@ body, #body-content {
 
 /* Mobile navbar */
 @media (max-width: 768px) {
-	.navbar-collapse.in .dropdown-menu-dark .dropdown-menu li > a:focus, 
+	.navbar-collapse.in .dropdown-menu-dark .dropdown-menu li > a:focus,
 	.navbar-collapse.in .dropdown-menu-dark .dropdown-menu li > a:hover,
-	
-	.navbar-collapse.in .dropdown-menu-dark .dropdown-menu > .active > a, 
-	.navbar-collapse.in .dropdown-menu-dark .dropdown-menu > .active > a:focus, 
+
+	.navbar-collapse.in .dropdown-menu-dark .dropdown-menu > .active > a,
+	.navbar-collapse.in .dropdown-menu-dark .dropdown-menu > .active > a:focus,
 	.navbar-collapse.in .dropdown-menu-dark .dropdown-menu > .active > a:hover,
 
-	.navbar-collapse.in .dropdown-menu-dark .nav .open > a, 
-	.navbar-collapse.in .dropdown-menu-dark .nav .open > a:focus, 
+	.navbar-collapse.in .dropdown-menu-dark .nav .open > a,
+	.navbar-collapse.in .dropdown-menu-dark .nav .open > a:focus,
 	.navbar-collapse.in .dropdown-menu-dark .nav .open > a:hover,
 
-	.navbar-default .navbar-nav .open .dropdown-menu > .active > a, 
-	.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus, 
+	.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+	.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus,
 	.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
 
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus,
@@ -99,8 +99,8 @@ body, #body-content {
 }
 
 /* Off-Canvas Menu */
-#cd-menu-trigger .cd-menu-icon, 
-#cd-menu-trigger.is-clicked .cd-menu-icon::before, 
+#cd-menu-trigger .cd-menu-icon,
+#cd-menu-trigger.is-clicked .cd-menu-icon::before,
 #cd-menu-trigger.is-clicked .cd-menu-icon::after {
 	background-color: #CCC;
 }
@@ -134,13 +134,13 @@ body, #body-content {
 .dropdown-menu > li > a {
 	color: #999;
 }
-.dropdown-menu li > a:focus, 
+.dropdown-menu li > a:focus,
 .dropdown-menu li > a:hover,
-.dropdown-menu > .active > a, 
-.dropdown-menu > .active > a:focus, 
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:focus,
 .dropdown-menu > .active > a:hover,
-.nav .open > a, 
-.nav .open > a:focus, 
+.nav .open > a,
+.nav .open > a:focus,
 .nav .open > a:hover {
 	background-color: #131313;
 	color: #E2E2E2;
@@ -213,11 +213,11 @@ body, #body-content {
 .isotope-filter-links a {
 	color: #999;
 }
-.isotope-filter-links a.active, 
+.isotope-filter-links a.active,
 .isotope-filter-links a:hover {
 	color: #FFF;
 }
-.isotope-filter-links a:before, 
+.isotope-filter-links a:before,
 .isotope-filter-links a.active:before {
    background-color: #DDD;
 }
@@ -250,17 +250,17 @@ a.al-at-link:hover, a.al-at-link:focus {
 .ali-style-1 .album-list-item .ali-img-wrap {
 	box-shadow: 0 0 0 1px #000;
 }
-.gutter-2 .ali-style-1 .album-list-item .ali-img-wrap:before, 
+.gutter-2 .ali-style-1 .album-list-item .ali-img-wrap:before,
 .gutter-3 .ali-style-1 .album-list-item .ali-img-wrap:before,
-.gutter-2 .ali-style-1 .album-list-item .ali-img-wrap:after, 
+.gutter-2 .ali-style-1 .album-list-item .ali-img-wrap:after,
 .gutter-3 .ali-style-1 .album-list-item .ali-img-wrap:after,
 .ali-style-1 .owl-carousel .album-list-item .ali-img-wrap:before,
 .ali-style-1 .owl-carousel .album-list-item .ali-img-wrap:after {
 	background-color: rgba(255, 255, 255, 0.13);
 }
-.gutter-2 .ali-style-2 .album-list-item .ali-img-wrap:before, 
+.gutter-2 .ali-style-2 .album-list-item .ali-img-wrap:before,
 .gutter-3 .ali-style-2 .album-list-item .ali-img-wrap:before,
-.gutter-2 .ali-style-2 .album-list-item .ali-img-wrap:after, 
+.gutter-2 .ali-style-2 .album-list-item .ali-img-wrap:after,
 .gutter-3 .ali-style-2 .album-list-item .ali-img-wrap:after,
 .ali-style-2 .owl-carousel .album-list-item .ali-img-wrap:before,
 .ali-style-2 .owl-carousel .album-list-item .ali-img-wrap:after {
@@ -311,7 +311,7 @@ a.al-at-link:hover, a.al-at-link:focus {
 
 /* album single item hover */
 .album-single-item .asi-cover {
-	background-color: rgba(0, 0, 0, 0.9);
+	background-color: rgba(0, 0, 0, 0.6);
 	color: #EEE;
 }
 .album-single-item .asi-title {
@@ -319,7 +319,7 @@ a.al-at-link:hover, a.al-at-link:focus {
 }
 .album-single-item .asi-sub-title {
 	color: #999;
-} 
+}
 .album-single-item .favorite-btn .icon-heart,
 .album-single-item .favorite-btn .fav-count {
 	color: #EEE;
@@ -342,27 +342,27 @@ a.al-at-link:hover, a.al-at-link:focus {
 .portfolio-share .head {color: #999;}
 
 /* Owl Carousel */
-.owl-carousel .owl-nav .owl-prev, 
+.owl-carousel .owl-nav .owl-prev,
 .owl-carousel .owl-nav .owl-next {
 	background-color: rgba(0, 0, 0, 0.25);
 	color: #FFF;
 }
-.owl-carousel .owl-nav .owl-prev:hover, 
+.owl-carousel .owl-nav .owl-prev:hover,
 .owl-carousel .owl-nav .owl-next:hover {
 	background-color: rgba(0, 0, 0, 0.85);
 	color: #FFF;
 }
-.owl-carousel .owl-nav .owl-prev.disabled, 
+.owl-carousel .owl-nav .owl-prev.disabled,
 .owl-carousel .owl-nav .owl-next.disabled {
 	background-color: rgba(0, 0, 0, 0.2);
 	color: rgba(255, 255, 255, 0.3) !important;
 }
 
-.nav-outside-top .owl-nav .owl-prev, 
+.nav-outside-top .owl-nav .owl-prev,
 .nav-outside-top .owl-nav .owl-next {
 	color: #999;
 }
-.nav-outside-top .owl-nav .owl-prev:hover, 
+.nav-outside-top .owl-nav .owl-prev:hover,
 .nav-outside-top .owl-nav .owl-next:hover {
 	color: #FFF;
 }
@@ -370,24 +370,24 @@ a.al-at-link:hover, a.al-at-link:focus {
 .owl-dots .owl-dot span {
 	background: #525252;
 }
-.owl-dots .owl-dot.active span, 
+.owl-dots .owl-dot.active span,
 .owl-dots .owl-dot:hover span {
 	background-color: #FFF;
 }
 
 /* Owl Carousel - nav-outside */
-.owl-carousel.nav-outside .owl-nav .owl-prev, 
+.owl-carousel.nav-outside .owl-nav .owl-prev,
 .owl-carousel.nav-outside .owl-nav .owl-next {
 	background-color: #0B0B0B;
 	color: #999;
 }
-.owl-carousel.nav-outside .owl-nav .owl-prev:hover, 
+.owl-carousel.nav-outside .owl-nav .owl-prev:hover,
 .owl-carousel.nav-outside .owl-nav .owl-next:hover {
 	color: #FFF;
 }
-.owl-carousel.nav-outside .owl-nav .owl-prev.disabled, 
-.owl-carousel.nav-outside .owl-nav .owl-next.disabled, 
-.owl-carousel.nav-outside .owl-nav .owl-prev:hover.disabled, 
+.owl-carousel.nav-outside .owl-nav .owl-prev.disabled,
+.owl-carousel.nav-outside .owl-nav .owl-next.disabled,
+.owl-carousel.nav-outside .owl-nav .owl-prev:hover.disabled,
 .owl-carousel.nav-outside .owl-nav .owl-next:hover.disabled {
 	background-color: #0B0B0B;
 	color: #353535;
@@ -431,7 +431,7 @@ hr.hr-short {
 }
 
 /* Blog sidebar widgets */
-#blog-search-form button, 
+#blog-search-form button,
 #subscribe-form button {
 	color: #999;
 }
@@ -497,9 +497,9 @@ hr.hr-short {
 .blog-single-tags span,
 .blog-single-tags a,
 .blog-single-links,
-.blog-single-links a, 
+.blog-single-links a,
 .blog-single-links .favorite-btn,
-.blog-single-nav .prev-post-info a, 
+.blog-single-nav .prev-post-info a,
 .blog-single-nav .next-post-info a,
 .media-heading,
 .media-body .article-time,
@@ -510,10 +510,10 @@ hr.hr-short {
 .blog-single-meta .article-author a:hover,
 .blog-single-meta .article-time-cat a:hover,
 .blog-single-tags a:hover,
-.blog-single-links a:hover, 
-.blog-single-links a:focus, 
+.blog-single-links a:hover,
+.blog-single-links a:focus,
 .blog-single-links .favorite-btn:hover,
-.blog-single-nav .prev-post-info a:hover, 
+.blog-single-nav .prev-post-info a:hover,
 .blog-single-nav .next-post-info a:hover,
 .media-heading a:hover,
 .media-reply a:hover {
@@ -534,19 +534,19 @@ hr.hr-short {
 	background-color: rgba(154, 154, 154, 0.16);
    border-color: rgba(154, 154, 154, 0.16);
 }
-.pagination > li > a:focus, 
-.pagination > li > a:hover, 
-.pagination > li > span:focus, 
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
 .pagination > li > span:hover {
 	color: #FFF;
 	background-color: rgba(179, 179, 179, 0.2);
 	border-color: rgba(179, 179, 179, 0.2);
 }
-.pagination > .active > a, 
-.pagination > .active > a:focus, 
-.pagination > .active > a:hover, 
-.pagination > .active > span, 
-.pagination > .active > span:focus, 
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
 .pagination > .active > span:hover {
 	color: #FFF;
 	background-color: #444;

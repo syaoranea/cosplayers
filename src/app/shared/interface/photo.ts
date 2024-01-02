@@ -12,4 +12,8 @@ export class Photo {
   name?: string;
   url?: string;
   file?: File;
+  class?: string;
+  cosplayer?: string;
+  category?: string;
+  qtdImg?: string;
 }
