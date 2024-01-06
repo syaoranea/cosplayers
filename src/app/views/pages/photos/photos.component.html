@@ -191,19 +191,25 @@
                 * Note1: For grid layout make sure that your images are the same dimensions.
                 * Note2: For masonry layout make sure that your images are the different dimensions.
                 -->
-                <div #grid  id="gallery" class="isotope-items-wrap lightgallery" >
+                <div #grid  id="gallery" class="isotope-items-wrap " >
 
                   <!-- Grid sizer (do not remove!!!) -->
                   <div class="grid-sizer"></div>
-                    <lightgallery [settings]="settings" [onBeforeSlide]="onBeforeSlide">
+                    <lightgallery [settings]="settings" [onBeforeSlide]="onBeforeSlide" class="lightgallery galery">
+
+<!--
+                   <a *ngFor="let photo of photos" class="asi-link lg-trigger" data-custom-prop="abc" href="{{photo.photoUrl}}" >
+                      <img class="asi-img image" src="{{photo.photoUrl}}" alt="image">
+                      <div class="overlay"></div>
+                    </a>
 
 
-               <!--     <a class="asi-link lg-triggera" data-custom-prop="abc" href="../../../../assets/img/galeria/halfangel-013.jpg" >
-                          <img class="asi-img" src="../../../../assets/img/galeria/halfangel-013.jpg" alt="image">
-                        </a> -->
-
-
-                  <div *ngFor="let photo of photos" class="isotope-item fashion">
+                    <a *ngFor="let photo of photos" class="asi-link lg-triggera" data-custom-prop="abc" href="{{photo.photoUrl}}" >
+                      <img class="asi-img" src="{{photo.photoUrl}}" alt="image">
+                      <div class="overlay"></div>
+                    </a> -->
+                    <a *ngFor="let photo of photos"  class="aaa" data-custom-prop="abc" href="{{photo.photoUrl}}">
+                    <div class="isotope-item fashion">
                     <div class="album-single-item">
 
                           <img class="asi-img" src="{{photo.photoUrl}}" alt="image">
@@ -234,6 +240,8 @@
 
                       </div>
 
+</a>
+
 
                   </lightgallery>
 
@@ -241,8 +249,16 @@
                 </div>
                 <!-- End isotope items wrap -->
 
+
               </div>
               <!-- End isotope -->
+
+
+
+
+
+
+
 
             </div> <!-- /.col -->
           </div> <!-- /.row -->

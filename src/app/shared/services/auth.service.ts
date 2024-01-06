@@ -76,7 +76,8 @@ export class AuthService {
 
   observeUserState() {
     this.firebaseAuthenticationService.authState.subscribe((userState) => {
-      userState && this.ngZone.run(() => this.router.navigate(['album']))
+      localStorage.setItem('user', JSON.stringify(userState));
+      userState && this.ngZone.run(() => this.router.navigate(['dasboard']))
     })
   }
 
