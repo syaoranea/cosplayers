@@ -81,7 +81,11 @@
                           <p *ngIf="user">{{ usuario }}</p>
                           <a (click)="logOut()">(logout)</a>
                         </div>
-                        <a routerLink="add-album"><h4><i class="fa fa-camera"></i> Criar Album</h4></a>
+
+                        <div>
+                          <a routerLink="add-album"><h4><i class="fa fa-camera"></i> Criar Album</h4></a>
+                          <a routerLink="add-news"><h4><i class="fa fa-book"></i> Criar Noticias</h4></a>
+                        </div>
 
                         <div class="row margin-top-20">
 

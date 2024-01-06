@@ -1,0 +1,33 @@
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column !important;
+  flex-wrap: wrap;
+
+  label {
+    font-weight: 600;
+
+  }
+}
+
+.form-btn {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      margin: 0 !important;
+      width: 150px;
+    }
+
+    button {
+      width: 150px;
+      height: 50px;
+      border-radius: 22px;
+      &:hover {
+        background-color: #000;
+        color: #fff;
+      }
+    }
+  }

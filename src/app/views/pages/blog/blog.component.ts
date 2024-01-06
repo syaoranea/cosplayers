@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, map } from 'rxjs';
+import { Category } from 'src/app/shared/interface/category';
+import { Noticia } from 'src/app/shared/interface/noticia';
+import { Photo } from 'src/app/shared/interface/photo';
+import { CategoryService } from 'src/app/shared/services/category.service';
 import { LoadingService } from 'src/app/shared/services/loading.service';
+import { NewsService } from 'src/app/shared/services/news.service';
+import { PhotosService } from 'src/app/shared/services/photos.service';
 
 @Component({
   selector: 'app-blog',
@@ -9,9 +16,17 @@ import { LoadingService } from 'src/app/shared/services/loading.service';
 export class BlogComponent implements OnInit {
 
   loading: boolean = false;
-  
+  news: Noticia[] = [];
+  category: Category[] = [];
+  recentes: Noticia[] = [];
+  photos?: Photo[];
+  uniqueAlbums: Set<string> = new Set<string>();
+
   constructor(
     private loadingService: LoadingService,
+    private firestoreService: NewsService,
+    private categoryService: CategoryService,
+    private servicePhoto: PhotosService,
   ){}
 
   ngOnInit(): void {
@@ -24,5 +39,64 @@ export class BlogComponent implements OnInit {
       this.loading = true;
 
     }, 1000);
+
+    this.getNews();
+    this.getCategory();
+    this.retrievePhotos();
+
   }
+
+  retrievePhotos(): void {
+    this.servicePhoto.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.uniqueAlbums.clear();
+
+      // Filtra as fotos mantendo apenas uma por álbum
+      this.photos = data.filter(photo => {
+        if (!this.uniqueAlbums.has(photo.album)) {
+          this.uniqueAlbums.add(photo.album);
+          return true;
+        }
+        return false;
+      });
+    });
+    this.photos = this.photos?.slice(0, 12);
+  }
+
+  getNews(): void {
+    this.firestoreService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      // Filtra as fotos mantendo apenas uma por álbum
+      this.news = data;
+      this.recentes = data.slice(0, 5);
+      console.log(this.news);
+    });
+  }
+
+  getCategory(): void {
+    this.categoryService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+
+      // Filtra as fotos mantendo apenas uma por álbum
+      this.category = data;
+      console.log(this.news);
+    });
+  }
+
+
 }

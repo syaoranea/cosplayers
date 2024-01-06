@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AddAlbumComponent } from './pages/add-album/add-album.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddNewsComponent } from './pages/add-news/add-news.component';
 
 const routes: Routes = [
 
@@ -16,13 +17,18 @@ const routes: Routes = [
     path: 'add-album',
     component: AddAlbumComponent,
   },
+  {
+    path: 'add-news',
+    component: AddNewsComponent,
+  }
 
 ];
 
 @NgModule({
 declarations: [
   DasboardComponent,
-  AddAlbumComponent
+  AddAlbumComponent,
+  AddNewsComponent
 ],
 imports: [
   CommonModule,

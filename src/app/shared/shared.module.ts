@@ -10,11 +10,12 @@ import { PostsRecentesComponent } from './components/posts-recentes/posts-recent
 import { TagsPopularesComponent } from './components/tags-populares/tags-populares.component';
 import { PhotoStreamComponent } from './components/photo-stream/photo-stream.component';
 import { InscricaoComponent } from './components/inscricao/inscricao.component';
+import { LimitCharactersPipePipe } from './utils/limit-characters-pipe.pipe';
 
 
 
 @NgModule({
-  declarations: [PreloaderComponent, HeaderComponent, FooterComponent, ProcurarComponent, BlogCategoriasComponent, PostsRecentesComponent, TagsPopularesComponent, PhotoStreamComponent, InscricaoComponent],
+  declarations: [PreloaderComponent, HeaderComponent, FooterComponent, ProcurarComponent, BlogCategoriasComponent, PostsRecentesComponent, TagsPopularesComponent, PhotoStreamComponent, InscricaoComponent, LimitCharactersPipePipe],
   imports: [CommonModule, RouterModule],
   exports: [
     PreloaderComponent,
@@ -23,7 +24,8 @@ import { InscricaoComponent } from './components/inscricao/inscricao.component';
     ProcurarComponent,
     BlogCategoriasComponent,
     PostsRecentesComponent,
-    TagsPopularesComponent, PhotoStreamComponent, InscricaoComponent
+    TagsPopularesComponent, PhotoStreamComponent, InscricaoComponent,
+    LimitCharactersPipePipe
   ]
 })
 export class SharedModule { }
