@@ -66,20 +66,20 @@
 
                       <!-- Begin blog list item -->
                       <div class="blog-list-item" *ngFor="let data of news">
-                        <a routerLink="/noticia" class="bli-image bg-image" style="background-image: url({{data.photoUrl}}); background-position: 50% 50%;">
+                        <a [routerLink]="['/noticia', data.id]"  class="bli-image bg-image" style="background-image: url({{data.photoUrl}}); background-position: 50% 50%;">
                         </a>
                         <div class="bli-info">
                           <h2 class="bli-title"><a href="blog-single-sidebar-right.html" title="Paris Fashion Week">{{data.title}}</a></h2>
                           <div class="bli-meta">
-                            <a href="" class="article-time"> {{data.createdAt}}</a> - by:
-                            <a href="" class="article-author">{{data.autor}}</a> - in
-                            <a href="" class="article-category">#{{data.category}}</a>
+                            <a [routerLink]="['/noticia', data.id]"  class="article-time"> {{data.createdAt}}</a> - by:
+                            <a [routerLink]="['/noticia', data.id]"  class="article-author">{{data.autor}}</a> - in
+                            <a [routerLink]="['/noticia', data.id]"  class="article-category">#{{data.category}}</a>
                           </div>
                           <p class="bli-desc">
                             {{data.description | slice:0:300}}
                             ...</p>
                           <div class="bli-button">
-                            <a href="blog-single-sidebar-right.html" class="btn btn-dark btn-rounded-5x btn-sm">Ler Mais</a>
+                            <a [routerLink]="['/noticia', data.id]"  class="btn btn-dark btn-rounded-5x btn-sm">Ler Mais</a>
                           </div>
                         </div>
                       </div>

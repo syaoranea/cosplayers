@@ -6,5 +6,6 @@ export class Noticia {
   createdAt?: Date;
   updatedAt?: Date;
   autor?: string;
-  data: Date;
+  data?: Date;
+  category?: string;
 }
