@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { th } from 'date-fns/locale';
 import { map } from 'rxjs';
 import { Photo } from 'src/app/shared/interface/photo';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -20,7 +21,7 @@ export class AlbumComponent implements AfterViewInit {
   @ViewChild('grid') grid!: ElementRef;
 
   isotope: any;
-  loading: boolean = false;
+  loading: boolean = true;
   filter = false;
   user: any;
   usuario: string;
@@ -39,9 +40,9 @@ export class AlbumComponent implements AfterViewInit {
   ){}
 
   photoData: Photo = new Photo;
-  ngOnInit(): void {
+/*   ngOnInit(): void {
     this.retrievePhotos();
-  }
+  } */
 
   retrievePhotos(): void {
     this.servicePhoto.getAll().snapshotChanges().pipe(
@@ -61,6 +62,8 @@ export class AlbumComponent implements AfterViewInit {
         }
         return false;
       });
+      this.loadingService.hide();
+      this.loading = true;
     });
   }
 
@@ -78,13 +81,9 @@ export class AlbumComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.loading =true
     this.loadingService.show();
+    this.retrievePhotos();
     // Simule uma operação demorada
-    setTimeout(() => {
-      this.loadingService.hide();
-      this.loading = true;
-      this.onLayout();
-      this.iUserIn();
-    }, 1000);
+
 
   }
 

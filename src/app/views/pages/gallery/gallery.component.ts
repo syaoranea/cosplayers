@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 declare var $: any;
 
@@ -9,12 +10,16 @@ declare var $: any;
 })
 export class GalleryComponent implements OnInit{
   private x = 0;
-  private intervalId: any;
+  private start: boolean = true;
 
   loading: boolean = false;
   speed: number = 80; // Velocidade de rolagem
   private value = 0
-  constructor(private loadingService: LoadingService, private el: ElementRef) { }
+  constructor(
+    private loadingService: LoadingService,
+    private el: ElementRef,
+    private serve: AuthService
+    ) { }
 
   ngOnInit(): void {
     this.loading =true
@@ -26,11 +31,14 @@ export class GalleryComponent implements OnInit{
       this.loading = true;
 
     }, 1000);
-
+    if(this.serve.start){
     this.getImg();
+    this.serve.start = false;
+  }
   }
 
   getImg() {
+    console.log('getImg');
     let x = 0;
     setInterval(() =>{
       x-= 1;

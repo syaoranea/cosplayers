@@ -20,7 +20,7 @@ export interface User {
 export class AuthService {
   user: any;
   error: any;
-
+  start: boolean;
   userData: any;
 
   constructor(
