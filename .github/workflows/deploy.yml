@@ -28,7 +28,7 @@ jobs:
       run: ng build --configuration production
 
     - name: Deploy to S3
-      uses: jakejarvis/s3-sync-action@0.5.1
+      uses: jakejarvis/s3-sync-action@master
     #  run: |
     #    aws s3 sync ./dist/cosplayers s3://gallery-cosplay
       env:
