@@ -1,0 +1,16 @@
+{
+  "version": "2012-10-17",
+  "statement": [
+    {
+      "sid": "PublicReadGetObject",
+      "effect": "Allow",
+      "principal": "*",
+      "action": [
+        "s3:GetObject"
+      ],
+      "resource": [
+        "arn:aws:s3:::gallery-cosplay/*"
+      ]
+    }
+  ]
+}

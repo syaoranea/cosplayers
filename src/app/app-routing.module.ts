@@ -9,11 +9,11 @@ const routes: Routes = [
   { path: '', redirectTo: 'gallery', pathMatch: 'full' },
   {path: 'gallery', loadChildren: () => import('./views/pages/gallery/gallery.module').then(m => m.GalleryModule)},
   {path: 'contact', loadChildren: () => import('./views/pages/contact/contact.module').then(m => m.ContactModule)},
-  {path: 'album', loadChildren: () => import('./views/pages/album/album.module').then(m => m.AlbumModule)},
-  {path: 'blog', loadChildren: () => import('./views/pages/blog/blog.module').then(m => m.BlogModule)/* ,  canActivate: [AuthGuard] */ },
-  {path: 'eventos', loadChildren: () => import('./views/pages/eventos/eventos.module').then(m => m.EventosModule)},
+ /*  {path: 'album', loadChildren: () => import('./views/pages/album/album.module').then(m => m.AlbumModule)}, */
+  /* {path: 'blog', loadChildren: () => import('./views/pages/blog/blog.module').then(m => m.BlogModule) *//* ,  canActivate: [AuthGuard] */ /* }, */
+  /* {path: 'eventos', loadChildren: () => import('./views/pages/eventos/eventos.module').then(m => m.EventosModule)}, */
   {path: 'obrigado', loadChildren: () => import('./views/pages/thanks/thanks.module').then(m => m.ThanksModule)},
-  {path: 'noticia/:id', loadChildren: () => import('./views/pages/news/news.module').then(m => m.NewsModule)},
+ /*  {path: 'noticia/:id', loadChildren: () => import('./views/pages/news/news.module').then(m => m.NewsModule)}, */
   {path: 'login', loadChildren: () => import('./views/pages/login/login.module').then(m => m.LoginModule)},
   {path: 'addphoto',  loadChildren: () => import('./views/pages/addphoto/addphoto.module').then(m => m.AddPhotoModule) },
   {path: 'photos/:id', loadChildren: () => import('./views/pages/photos/photos.module').then(m => m.PhotosModule)},
