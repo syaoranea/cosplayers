@@ -9,4 +9,7 @@ export interface Usuario {
   avatar: string;
   cosplayer: string;
   category: string;
+  website: string;
+  youtube: string;
+  tiktok: string;
 }

@@ -37,6 +37,8 @@ export class AddAlbumComponent implements OnInit {
 
   async onSubmit(): Promise<void> {
     const albumName = this.albumForm.get('albumName').value;
+    const cosplayer = this.albumForm.get('cosplayer').value;
+    console.log('Nome do Cosplayer:', cosplayer);
     console.log('Nome do Álbum:', albumName);
 
 
@@ -46,7 +48,7 @@ export class AddAlbumComponent implements OnInit {
       console.log(`Foto ${i + 1}: ${photoName}`);
 
       const photoData: Photo = {
-        title: photoName,
+        title: this.albumForm.get('albumName')?.value,
         description: this.albumForm.get('description')?.value || '',
         album: this.albumForm.get('albumName')?.value || '',
         cosplayer: this.albumForm.get('cosplayer')?.value || '',
@@ -54,7 +56,7 @@ export class AddAlbumComponent implements OnInit {
         // Adicione mais campos conforme necessário
       };
 
-      const photoPath = `uploads/${albumName}`;
+      const photoPath = `uploads/cosplayer/${cosplayer}/${albumName}/${photoName}`;
       const storageRef = this.storage.ref(photoPath);
       await storageRef.put(this.photos[i]);
 

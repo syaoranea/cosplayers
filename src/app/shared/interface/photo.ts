@@ -16,4 +16,5 @@ export class Photo {
   cosplayer?: string;
   category?: string;
   qtdImg?: string;
+  banner?: string;
 }

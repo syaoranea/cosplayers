@@ -17,7 +17,7 @@
       ===============================
       * Use class "parallax" to enable parallax effect.
       -->
-      <div class="page-header-image parallax bg-image" style="background-image: url(assets/img/headings/heading-3.jpg); background-position: 50% 50%;"></div>
+      <div class="page-header-image parallax bg-image" style="background-image: url({{photos[0].banner}}); background-position: 50% 50%;"></div>
       <!-- End page header image -->
 
       <!-- Element cover -->
@@ -104,13 +104,13 @@
                   <div class="portfolio-atr margin-top-50">
                     <ul class="list-unstyled">
                       <li>
-                        <h4 class="head">Client:</h4>
+                        <h4 class="head">Cosplayer:</h4>
                         <span class="info">{{ usuario[0].cosplayer }}</span>
                       </li>
 
                       <li>
                         <h4 class="head">Website:</h4>
-                        <span class="info"><a target="_blank" href="{{ usuario[0].onlyfans }}">{{ usuario[0].onlyfans }}</a></span>
+                        <span class="info"><a target="_blank" href="{{ usuario[0].website }}">{{ usuario[0].website }}</a></span>
                       </li>
 
                       <li>
@@ -123,10 +123,12 @@
                       <!-- Begin portfolio share -->
                       <li class="portfolio-share">
                         <h4 class="head">Share:</h4>
-                        <span class="info"><a href="{{ usuario[0].facebook }}" title="Share to Facebook"><i class="fab fa-facebook-f"></i></a></span>
-                        <span class="info"><a href="{{ usuario[0].twitter }}" title="Share to Twitter"><i class="fab fa-twitter"></i></a></span>
-                        <span class="info"><a href="{{ usuario[0].onlyfans }}" title="Share to Pinterest"><i class="fab fa-pinterest-p"></i></a></span>
-                        <span class="info"><a href="{{ usuario[0].instagram }}" title="Share to Instagram"><i class="fab fa-instagram"></i></a></span>
+                        <span *ngIf="usuario[0].facebook" class="info"><a href="{{ usuario[0].facebook }}" title="Share to Facebook"><i class="fab fa-facebook-f"></i></a></span>
+                        <span *ngIf="usuario[0].twitter" class="info"><a href="{{ usuario[0].twitter }}" title="Share to Twitter"><i class="fab fa-twitter"></i></a></span>
+                        <span *ngIf="usuario[0].onlyfans" class="info"><a href="{{ usuario[0].onlyfans }}" title="Share to Pinterest"><i class="fab fa-pinterest-p"></i></a></span>
+                        <span *ngIf="usuario[0].instagram" class="info"><a href="{{ usuario[0].instagram }}" title="Share to Instagram"><i class="fab fa-instagram"></i></a></span>
+                        <span *ngIf="usuario[0].tiktok" class="info"><a href="{{ usuario[0].tiktok }}" title="Share to Pinterest"><i class="fab fa-tiktok"></i></a></span>
+                        <span *ngIf="usuario[0].youtube" class="info"><a href="{{ usuario[0].youtube }}" title="Share to Instagram"><i class="fab fa-youtube"></i></a></span>
                       </li>
                       <!-- End portfolio share -->
 
@@ -229,7 +231,7 @@
                                   <span class="icon-heart-filled"></span>
                                 </div>
                               </div>
-                              <div class="fav-count">1169</div>
+                              <div class="fav-count"><!-- 1169 --></div>
                             </div>
 
 
