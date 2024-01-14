@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UploadFormComponent } from './components/upload-form/upload-form.component';
 import { UploadListComponent } from './components/upload-list/upload-list.component';
 import { UploadDetailsComponent } from './components/upload-details/upload-details.component';
+import { ErrorComponent } from './views/pages/error/error.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { UploadDetailsComponent } from './components/upload-details/upload-detai
     UploadFormComponent,
     UploadListComponent,
     UploadDetailsComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { UploadDetailsComponent } from './components/upload-details/upload-detai
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     ReactiveFormsModule,
+    SharedModule
 
   ],
   providers: [],

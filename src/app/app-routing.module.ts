@@ -4,6 +4,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { UploadFormComponent } from './components/upload-form/upload-form.component';
 import { UploadListComponent } from './components/upload-list/upload-list.component';
 import { UploadDetailsComponent } from './components/upload-details/upload-details.component';
+import { ErrorComponent } from './views/pages/error/error.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'gallery', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'upload', component: UploadFormComponent},
   {path: 'upload-list', component: UploadListComponent},
   {path: 'upload-details', component: UploadDetailsComponent},
+  {path: 'error', component: ErrorComponent},
 
 ];
 
