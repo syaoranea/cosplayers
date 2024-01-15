@@ -12,7 +12,7 @@
     ===============================
     * Use class "parallax" to enable parallax effect.
     -->
-    <div class="page-header-image parallax bg-image" style="background-image: url(assets/img/headings/heading-12.jpg); background-position: 50% 50%;"></div>
+    <div class="page-header-image parallax bg-image" style="background-image: url(https://firebasestorage.googleapis.com/v0/b/gallery-cosplay-9027c.appspot.com/o/uploads%2Fbanner%2Fbanner.png?alt=media&token=9d423ef7-b64e-44d5-9d41-e90fba27b5ff); background-position: 50% 50%;"></div>
     <!-- End page header image -->
 
     <!-- Element cover -->
@@ -64,7 +64,19 @@
                     <input type="text" id="cosplayer" formControlName="cosplayer" />
                     <label for="category">Categoria:</label>
                     <input type="text" id="category" formControlName="category" />
+                    <label for="class">Classe:</label>
+                    <select id="class" name="class" formControlName="class" >
+                      <option value="ecchi">Ecchi</option>
+                      <option value="classico">Clássico</option>
+                      <option value="fantasia epica">Fantasia Épica</option>
+                      <option value="crossplay">Crossplay</option>
+                      <option value="tematicos">Tematicos</option>
+
+                    </select>
+                    <label for="banner">Banner:</label>
+                    <input type="text" id="banner" formControlName="banner" />
                     <label for="photoInput">Escolher Fotos:</label>
+
                     <input type="file" id="photoInput" (change)="addPhoto($event)" multiple />
 
                     <button type="submit" [disabled]="albumForm.invalid || photos.length === 0">Criar Álbum</button>

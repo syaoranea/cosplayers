@@ -25,6 +25,8 @@ export class AddAlbumComponent implements OnInit {
       description: ['', [Validators.required, Validators.maxLength(500)]],
       cosplayer: ['', [Validators.required, Validators.maxLength(50)]],
       category: ['', [Validators.required, Validators.maxLength(50)]],
+      class: ['', [Validators.required, Validators.maxLength(50)]],
+      banner: [''],
     });
   }
 
@@ -53,6 +55,8 @@ export class AddAlbumComponent implements OnInit {
         album: this.albumForm.get('albumName')?.value || '',
         cosplayer: this.albumForm.get('cosplayer')?.value || '',
         category: this.albumForm.get('category')?.value || '',
+        class: this.albumForm.get('class')?.value || '',
+        banner: this.albumForm.get('banner')?.value || '',
         // Adicione mais campos conforme necessário
       };
 

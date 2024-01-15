@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { th } from 'date-fns/locale';
 import { map } from 'rxjs';
@@ -16,7 +16,7 @@ declare var $: any;
   styleUrls: ['./album.component.scss']
 })
 
-export class AlbumComponent implements AfterViewInit {
+export class AlbumComponent implements OnInit, AfterViewInit {
 
   @ViewChild('grid') grid!: ElementRef;
 
@@ -38,6 +38,10 @@ export class AlbumComponent implements AfterViewInit {
     private servicePhoto: PhotosService,
     private route: Router,
   ){}
+  ngOnInit(): void {
+    this.setActivePhoto(this.photoData, 0);
+   // this.onLayout();
+  }
 
   photoData: Photo = new Photo;
 /*   ngOnInit(): void {
@@ -62,7 +66,7 @@ export class AlbumComponent implements AfterViewInit {
         }
         return false;
       });
-      this.loadingService.hide();
+      /* this.loadingService.hide(); */
       this.loading = true;
     });
   }
@@ -79,12 +83,12 @@ export class AlbumComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.onLayout();
     this.loading =true
-    this.loadingService.show();
+    /* this.loadingService.show(); */
     this.retrievePhotos();
+
     // Simule uma operação demorada
-
-
   }
 
   iUserIn() {
