@@ -3,3 +3,9 @@
 @import '../node_modules/lightgallery/scss/lightgallery.scss';
 
 @import '../node_modules/lightgallery/scss/lg-thumbnail.scss';
+.caption-outside .album-list-item .album-share {
+.text-1 {
+  padding: 0 0 0 !important;
+  margin-bottom: -7px !important;
+}
+}

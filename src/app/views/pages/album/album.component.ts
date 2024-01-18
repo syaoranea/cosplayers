@@ -39,7 +39,7 @@ export class AlbumComponent implements OnInit, AfterViewInit {
     private route: Router,
   ){}
   ngOnInit(): void {
-    this.setActivePhoto(this.photoData, 0);
+    this.retrievePhotos();
    // this.onLayout();
   }
 
@@ -81,14 +81,17 @@ export class AlbumComponent implements OnInit, AfterViewInit {
     this.currentTutorial = photo;
     this.currentIndex = index;
   }
-
   ngAfterViewInit() {
-    this.onLayout();
     this.loading =true
-    /* this.loadingService.show(); */
-    this.retrievePhotos();
-
+    this.loadingService.show();
     // Simule uma operação demorada
+    setTimeout(() => {
+      this.loadingService.hide();
+      this.loading = true;
+      this.onLayout();
+      this.iUserIn();
+    }, 3000);
+
   }
 
   iUserIn() {

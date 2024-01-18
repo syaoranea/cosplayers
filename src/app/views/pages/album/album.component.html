@@ -160,13 +160,15 @@
                         <div class="ali-img-wrap">
                           <img class="ali-img"  src="{{data.photoUrl}}" alt="{{data.title}}">
                         </div>
-                        <div class="ali-caption">
-                          <h2 class="ali-title">{{data.title}}</h2>
-                          <div class="ali-meta">{{data.qtdImg}} fotos <!-- · 134 views --></div>
-                        </div>
+
                       </a>
-                      <a href="#0" class="album-share" title="Share this album" data-toggle="modal" data-target="#modal-76532457">
-                        <i class="fas fa-share-alt"></i>
+                      <a href="#0" class="album-share " title="Share this album" data-toggle="modal" data-target="#modal-76532457">
+                        
+                        <div class="ali-caption messagem">
+                          <h2 class="ali-title">{{data.title}}</h2>
+                          <span class="text-1">{{data.cosplayer}}</span>
+                          <div class="ali-meta mt-1">{{data.qtdImg}} fotos <!-- · 134 views --></div>
+                        </div>
                       </a>
 
                       <!-- Begin album share modal -->
