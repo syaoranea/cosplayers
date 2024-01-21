@@ -6,6 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AddAlbumComponent } from './pages/add-album/add-album.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddNewsComponent } from './pages/add-news/add-news.component';
+import { AddCosplayerComponent } from './pages/add-cosplayer/add-cosplayer.component';
 
 const routes: Routes = [
 
@@ -20,7 +21,11 @@ const routes: Routes = [
   {
     path: 'add-news',
     component: AddNewsComponent,
-  }
+  },
+  {
+    path: 'add-cosplayer',
+    component: AddCosplayerComponent,
+  },
 
 ];
 
@@ -28,7 +33,8 @@ const routes: Routes = [
 declarations: [
   DasboardComponent,
   AddAlbumComponent,
-  AddNewsComponent
+  AddNewsComponent,
+  AddCosplayerComponent
 ],
 imports: [
   CommonModule,

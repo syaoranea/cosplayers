@@ -1,3 +1,4 @@
+<app-preloader></app-preloader>
 <app-header></app-header>
 
 <div id="body-content">
@@ -85,6 +86,7 @@
                         <div>
                           <a routerLink="add-album"><h4><i class="fa fa-camera"></i> Criar Album</h4></a>
                           <a routerLink="add-news"><h4><i class="fa fa-book"></i> Criar Noticias</h4></a>
+                          <a routerLink="add-cosplayer"><h4><i class="fa fa-user"></i> Criar Cosplayer</h4></a>
                         </div>
 
                         <div class="row margin-top-20">
@@ -155,9 +157,11 @@
 
                   <h3 class="sidebar-heading">Information</h3>
                   <hr class="hr-short">
-                  <p>Fuga laboriosam, quisquam quam saepe, magnam neque vel itaque, consequuntur distinctio odit doloremque non dolor totam. Quidem laudantium magnam.</p>
+                  <p>Total de Fotos: {{dados.totalFotos}}.</p>
 
-                  <p>Wuos nemo alias architecto, accusantium tempora attes nam conse quuntur ab sunt.</p>
+                  <p>Total de Albuns:{{dados.totalAlbum}}.</p>
+                  <p>Total de Cosplayers:{{dados.totalCosplayers}}.</p>
+                  <p>Total de Noticias:.</p>
                   <a href="" class="btn btn-dark btn-rounded-5x btn-block margin-top-40">More Info...</a>
 
                 </div>

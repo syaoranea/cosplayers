@@ -65,6 +65,7 @@ export class PhotosComponent implements OnInit, AfterViewInit{
   uniqueAlbums: Set<string> = new Set<string>();
   loading: boolean = false;
   photoAlbum: string;
+  cosplayerId: string;
   constructor(
     private loadingService: LoadingService,
     private route: ActivatedRoute,
@@ -94,10 +95,11 @@ export class PhotosComponent implements OnInit, AfterViewInit{
   }
   ngOnInit(): void {
     this.photoAlbum = this.route.snapshot.paramMap.get('id');
+    this.cosplayerId = this.route.snapshot.paramMap.get('cosplayer');
     console.log(this.photoAlbum);
     // Agora, productId contém o valor do parâmetro 'id'
 
-    this.retrievePhotos(this.photoAlbum);
+    this.retrievePhotos(this.photoAlbum, this.cosplayerId);
     console.log(this.usuario);
   }
 
@@ -121,7 +123,7 @@ export class PhotosComponent implements OnInit, AfterViewInit{
     console.log(index, prevIndex);
   };
 
-  retrievePhotos(albumId: string): void {
+  retrievePhotos(albumId: string, cosplayerId: string): void {
     this.servicePhoto.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -133,7 +135,7 @@ export class PhotosComponent implements OnInit, AfterViewInit{
 
       // Filtra as fotos mantendo apenas aquelas que pertencem ao álbum específico
       this.photos = data.filter(photo => {
-        if (photo.album === albumId) {
+        if (photo.album === albumId && photo.cosplayer === cosplayerId) {
           console.log(photo.cosplayer);
           this.retrieveUsuarios(photo.cosplayer);
           return true;

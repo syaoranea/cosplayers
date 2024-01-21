@@ -60,8 +60,8 @@ export class AlbumComponent implements OnInit, AfterViewInit {
 
       // Filtra as fotos mantendo apenas uma por álbum
       this.photos = data.filter(photo => {
-        if (!this.uniqueAlbums.has(photo.album)) {
-          this.uniqueAlbums.add(photo.album);
+        if (!this.uniqueAlbums.has(photo.album + photo.cosplayer)) {
+          this.uniqueAlbums.add(photo.album + photo.cosplayer);
           return true;
         }
         return false;
