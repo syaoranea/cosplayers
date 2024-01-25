@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CircleProgressOptions } from 'ng-circle-progress';
 import { Observable } from 'rxjs';
 import { Photo } from 'src/app/shared/interface/photo';
 import { PhotosService } from 'src/app/shared/services/photos.service';
@@ -12,6 +13,9 @@ import { PhotosService } from 'src/app/shared/services/photos.service';
 export class AddAlbumComponent implements OnInit {
   albumForm: FormGroup;
   photos: File[] = [];
+  percent: number = 0;
+  options = new CircleProgressOptions();
+  show: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -35,6 +39,7 @@ export class AddAlbumComponent implements OnInit {
     if (files && files.length > 0) {
       this.photos = Array.from(files);
     }
+
   }
 
   async onSubmit(): Promise<void> {
@@ -42,12 +47,12 @@ export class AddAlbumComponent implements OnInit {
     const cosplayer = this.albumForm.get('cosplayer').value;
     console.log('Nome do Cosplayer:', cosplayer);
     console.log('Nome do Álbum:', albumName);
-
-
-
+    this.show = true;
     for (let i = 0; i < this.photos.length; i++) {
       const photoName = `${albumName}_${i + 1}`;
       console.log(`Foto ${i + 1}: ${photoName}`);
+
+      this.percent = Math.round(((i + 1) / this.photos.length) * 100);
 
       const photoData: Photo = {
         title: this.albumForm.get('albumName')?.value,
@@ -87,6 +92,7 @@ Type */
     }
 
     console.log('Fotos enviadas com sucesso!');
+    this.show = false;
   }
 }
 

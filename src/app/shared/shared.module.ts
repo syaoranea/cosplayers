@@ -11,12 +11,13 @@ import { TagsPopularesComponent } from './components/tags-populares/tags-popular
 import { PhotoStreamComponent } from './components/photo-stream/photo-stream.component';
 import { InscricaoComponent } from './components/inscricao/inscricao.component';
 import { LimitCharactersPipePipe } from './utils/limit-characters-pipe.pipe';
-
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 
 @NgModule({
-  declarations: [PreloaderComponent, HeaderComponent, FooterComponent, ProcurarComponent, BlogCategoriasComponent, PostsRecentesComponent, TagsPopularesComponent, PhotoStreamComponent, InscricaoComponent, LimitCharactersPipePipe],
-  imports: [CommonModule, RouterModule],
+  declarations: [PreloaderComponent, HeaderComponent, FooterComponent, ProcurarComponent, BlogCategoriasComponent, PostsRecentesComponent, TagsPopularesComponent, PhotoStreamComponent, InscricaoComponent, LimitCharactersPipePipe, ProgressBarComponent],
+  imports: [CommonModule, RouterModule,],
   exports: [
     PreloaderComponent,
     HeaderComponent,

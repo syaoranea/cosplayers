@@ -15,7 +15,6 @@ import { UploadListComponent } from './components/upload-list/upload-list.compon
 import { UploadDetailsComponent } from './components/upload-details/upload-details.component';
 import { ErrorComponent } from './views/pages/error/error.component';
 import { SharedModule } from './shared/shared.module';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +32,9 @@ import { SharedModule } from './shared/shared.module';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+
+
 
   ],
   providers: [],

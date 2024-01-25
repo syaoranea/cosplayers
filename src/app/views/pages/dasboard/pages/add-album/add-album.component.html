@@ -1,6 +1,19 @@
 <app-header></app-header>
 
-<div id="body-content">
+<div class="progress-circle" *ngIf="show">
+  <circle-progress
+  [percent]="percent"
+  [radius]="100"
+  [outerStrokeWidth]="16"
+  [innerStrokeWidth]="8"
+  [outerStrokeColor]="'#78C000'"
+  [innerStrokeColor]="'#C7E596'"
+  [animation]="true"
+  [animationDuration]="1000">
+  </circle-progress>
+</div>
+
+<div id="body-content" *ngIf="!show">
 
 
   <!-- ================================
@@ -71,6 +84,14 @@
                       <option value="fantasia epica">Fantasia Épica</option>
                       <option value="crossplay">Crossplay</option>
                       <option value="tematicos">Tematicos</option>
+                      <option value="original">Original</option>
+                      <option value="kawaii">kawaii</option>
+                      <option value="gênero Invertido">Gênero Invertido</option>
+                      <option value="games">Games</option>
+                      <option value="filmes">Filmes</option>
+                      <option value="series ">Series </option>
+                      <option value="cosplay de horror">Cosplay de Horror</option>
+                      <option value="HQs">HQs</option>
 
                     </select>
                     <label for="banner">Banner:</label>

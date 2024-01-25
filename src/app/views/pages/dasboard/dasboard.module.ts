@@ -7,7 +7,7 @@ import { AddAlbumComponent } from './pages/add-album/add-album.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddNewsComponent } from './pages/add-news/add-news.component';
 import { AddCosplayerComponent } from './pages/add-cosplayer/add-cosplayer.component';
-
+import { NgCircleProgressModule } from 'ng-circle-progress';
 const routes: Routes = [
 
   {
@@ -40,7 +40,16 @@ imports: [
   CommonModule,
   SharedModule,
   ReactiveFormsModule,
-  RouterModule.forChild(routes)
+  RouterModule.forChild(routes),
+  NgCircleProgressModule.forRoot({
+    // set defaults here
+    radius: 100,
+    outerStrokeWidth: 16,
+    innerStrokeWidth: 8,
+    outerStrokeColor: "#78C000",
+    innerStrokeColor: "#C7E596",
+    animationDuration: 300,
+  })
 ]
 })
 export class DasboardModule { }
