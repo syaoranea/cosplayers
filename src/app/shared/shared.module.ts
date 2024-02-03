@@ -13,10 +13,24 @@ import { InscricaoComponent } from './components/inscricao/inscricao.component';
 import { LimitCharactersPipePipe } from './utils/limit-characters-pipe.pipe';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
 
 @NgModule({
-  declarations: [PreloaderComponent, HeaderComponent, FooterComponent, ProcurarComponent, BlogCategoriasComponent, PostsRecentesComponent, TagsPopularesComponent, PhotoStreamComponent, InscricaoComponent, LimitCharactersPipePipe, ProgressBarComponent],
+  declarations: [
+    PreloaderComponent,
+    HeaderComponent,
+    FooterComponent,
+    ProcurarComponent,
+    BlogCategoriasComponent,
+    PostsRecentesComponent,
+    TagsPopularesComponent,
+    PhotoStreamComponent,
+    InscricaoComponent,
+    LimitCharactersPipePipe,
+    ProgressBarComponent,
+    PaginatorComponent
+  ],
   imports: [CommonModule, RouterModule,],
   exports: [
     PreloaderComponent,
@@ -26,7 +40,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     BlogCategoriasComponent,
     PostsRecentesComponent,
     TagsPopularesComponent, PhotoStreamComponent, InscricaoComponent,
-    LimitCharactersPipePipe
+    LimitCharactersPipePipe,
+    PaginatorComponent
   ]
 })
 export class SharedModule { }

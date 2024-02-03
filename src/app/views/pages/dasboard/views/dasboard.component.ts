@@ -57,13 +57,7 @@ export class DasboardComponent implements OnInit, AfterViewInit{
   }
 
   retrievePhotos(): void {
-    this.servicePhoto.getAll().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
+    this.servicePhoto.getAll().subscribe(data => {
       this.dados.totalFotos = data.length;
       this.uniqueAlbums.clear();
 

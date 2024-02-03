@@ -124,13 +124,7 @@ export class PhotosComponent implements OnInit, AfterViewInit{
   };
 
   retrievePhotos(albumId: string, cosplayerId: string): void {
-    this.servicePhoto.getAll().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
+    this.servicePhoto.getAll().subscribe(data => {
       this.uniqueAlbums.clear();
 
       // Filtra as fotos mantendo apenas aquelas que pertencem ao álbum específico
@@ -143,8 +137,6 @@ export class PhotosComponent implements OnInit, AfterViewInit{
         return false;
       });
     });
-
-
 
   }
 

@@ -119,7 +119,7 @@
               <div class="isotope gutter-2 col-6" >
                 <div #grid class="isotope-items-wrap ali-style-2 caption-outside">
                   <div class="grid-sizer"></div>
-                  <div *ngFor="let data of photos" class="isotope-item  {{data.class}}">
+                  <div *ngFor="let data of displayedphotos" class="isotope-item  {{data.class}}">
                     <div class="album-list-item">
                       <a class="ali-link" [routerLink]="['/photos', data.album, data.cosplayer]"  data-lg-thumbnail="{{data.photoUrl}}">
                         <div class="ali-img-wrap">
@@ -181,48 +181,13 @@
           </div> <!-- /.col -->
         </div> <!-- /.row -->
 
-        <div class="row">
-          <div class="col-md-8">
 
-            <!-- Begin pagination -->
-            <nav class="pagination-wrap">
-              <ul class="pagination">
-                <li>
-                  <a href="" aria-label="Previous">
-                    <span aria-hidden="true">First</span>
-                  </a>
-                </li>
-                <li><a href="">Prev</a></li>
-                <li class="active"><a href="#0">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li><a href="#0">...</a></li>
-                <li><a href="">6</a></li>
-                <li><a href="">7</a></li>
-                <li><a href="">8</a></li>
-                <li><a href="">Next</a></li>
-                <li>
-                  <a href="" aria-label="Next">
-                    <span aria-hidden="true">Last</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-            <!-- End pagination -->
-
-          </div> <!-- /.col -->
-
-          <div class="col-md-4">
-
-            <!-- Begin pagination info -->
-            <div class="pagination-info ">
-              <span>Showing page 1 of 8</span>
-              <span>Items 1 - 15 of 94</span>
-            </div>
-            <!-- End pagination info -->
-
-          </div> <!-- /.col -->
-        </div> <!-- /.row -->
+        <app-paginator
+          [currentPage]="currentPage"
+          [totalPages]="totalPages"
+          [limit]="pageSize"
+          (pageChanged)="onPageChanged($event)"
+        ></app-paginator>
 
       </div> <!-- /.container -->
     </section>

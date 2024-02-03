@@ -29,8 +29,14 @@ export class AlbumComponent implements OnInit, AfterViewInit {
   currentTutorial?: Photo;
   currentIndex = -1;
   title = '';
-  photos?: Photo[];
+
   uniqueAlbums: Set<string> = new Set<string>();
+
+  photos?: Photo[];
+  pageSize = 40;
+  currentPage = 1;
+  photoData: Photo = new Photo;
+
   constructor(
     private loadingService: LoadingService,
     private el: ElementRef,
@@ -40,22 +46,37 @@ export class AlbumComponent implements OnInit, AfterViewInit {
   ){}
   ngOnInit(): void {
     this.retrievePhotos();
-   // this.onLayout();
+    this.onLayout();
+
   }
 
-  photoData: Photo = new Photo;
-/*   ngOnInit(): void {
-    this.retrievePhotos();
-  } */
+  get totalPages(): number {
+    return Math.ceil(this.photos.length / this.pageSize);
+  }
+
+  get displayedphotos(): any[] {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.photos.slice(startIndex, endIndex);
+  }
+
+  onPageChanged(pageNumber: number): void {
+    this.currentPage = pageNumber;
+    this.loadingService.show();
+    setTimeout(() => {
+      this.loadingService.hide();
+      this.loading = true;
+      this.onLayout();
+      this.iUserIn();
+    }, 3000);
+  }
 
   retrievePhotos(): void {
-    this.servicePhoto.getAll().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
+    if (this.photos) {
+      console.log('Fotos já carregadas anteriormente. Não é necessário carregar novamente.');
+      return;
+    }
+    this.servicePhoto.getAll().subscribe(data => {
       this.uniqueAlbums.clear();
 
       // Filtra as fotos mantendo apenas uma por álbum
@@ -68,7 +89,14 @@ export class AlbumComponent implements OnInit, AfterViewInit {
       });
       /* this.loadingService.hide(); */
       this.loading = true;
-    });
+      console.log(this.photos);
+    },
+      (error) => {
+        console.error('Erro ao recuperar fotos2:', error);
+        // Trate o erro conforme necessário
+        // Por exemplo, exiba uma mensagem de erro para o usuário
+      }
+    );
   }
 
   refreshList(): void {
