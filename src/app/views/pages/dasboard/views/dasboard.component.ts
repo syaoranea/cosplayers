@@ -31,7 +31,7 @@ export class DasboardComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
 
     this.iUserIn();
-    this.retrievePhotos();
+
   }
   ngAfterViewInit() {
 
@@ -55,32 +55,6 @@ export class DasboardComponent implements OnInit, AfterViewInit{
     this.user = JSON.parse(localStorage.getItem('user')!);
     this.usuario = this.user.displayName;
   }
-
-  retrievePhotos(): void {
-    this.servicePhoto.getAll().subscribe(data => {
-      this.dados.totalFotos = data.length;
-      this.uniqueAlbums.clear();
-
-      // Filtra as fotos mantendo apenas uma por álbum
-      this.photos = data.filter(photo => {
-        if (!this.uniqueAlbums.has(photo.album)) {
-          this.uniqueAlbums.add(photo.album);
-          return true;
-        }
-        if (!this.uniqueCosplayer.has(photo.cosplayer)) {
-          this.uniqueCosplayer.add(photo.cosplayer);
-          return true;
-        }
-        return false;
-      });
-      /* this.loadingService.hide(); */
-      this.dados.totalAlbum = this.uniqueAlbums.size;
-      this.dados.totalCosplayers = this.uniqueCosplayer.size;
-      this.loading = true;
-    });
-  }
-
-
 
   logOut() {
     this.authService.logOut();

@@ -8,4 +8,5 @@ export class Noticia {
   autor?: string;
   data?: Date;
   category?: string;
+  slug?: string;
 }

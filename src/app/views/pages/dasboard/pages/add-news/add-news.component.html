@@ -60,13 +60,18 @@
                       <label for="albumName">Titulo:</label>
                       <input type="text" id="title" formControlName="title" />
                       <label for="albumName">Descrição:</label>
-                      <input  type="text" id="description" formControlName="description" />
+                      <div class="NgxEditor__Wrapper">
+                        <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                        <ngx-editor class="rich-text" [editor]="editor" [placeholder]="'Type here...'"></ngx-editor>
+                      </div>
+
                       <label for="albumName">Url da Foto:</label>
                       <input type="text" id="photoUrl" formControlName="photoUrl" />
                       <label for="albumName">Autor:</label>
                       <input type="text" id="autor" formControlName="autor" />
                       <label for="category">Categoria:</label>
                       <input type="text" id="category" formControlName="category" />
+
                       <input type="hidden" id="date" formControlName="date" />
                     </div>
 

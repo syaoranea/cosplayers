@@ -26,7 +26,7 @@ export class BlogComponent implements OnInit {
     private loadingService: LoadingService,
     private firestoreService: NewsService,
     private categoryService: CategoryService,
-    private servicePhoto: PhotosService,
+    
   ){}
 
   ngOnInit(): void {
@@ -42,31 +42,11 @@ export class BlogComponent implements OnInit {
 
     this.getNews();
     this.getCategory();
-    this.retrievePhotos();
+
 
   }
 
-  retrievePhotos(): void {
-    this.servicePhoto.getAll().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
-      this.uniqueAlbums.clear();
 
-      // Filtra as fotos mantendo apenas uma por álbum
-      this.photos = data.filter(photo => {
-        if (!this.uniqueAlbums.has(photo.album)) {
-          this.uniqueAlbums.add(photo.album);
-          return true;
-        }
-        return false;
-      });
-    });
-    this.photos = this.photos?.slice(0, 12);
-  }
 
   getNews(): void {
     this.firestoreService.getAll().snapshotChanges().pipe(

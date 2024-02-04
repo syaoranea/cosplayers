@@ -31,3 +31,10 @@
       }
     }
   }
+
+  ::ng-deep{
+    .ProseMirror   {
+      height: 300px!important;
+    }
+  }
+

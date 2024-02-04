@@ -16,7 +16,19 @@ export class PhotosService {
     this.tutorialsRef = db.collection(this.dbPath);
   }
 
-  getAll(): Observable<Photo[]> {
+  getAll(options?: { sortField?: string; sortOrder?: 'asc' | 'desc'; limit?: number }): Observable<Photo[]> {
+
+
+    // Apply sorting and limiting if options are provided
+  if (options) {
+    if (options.sortField && options.sortOrder) {
+      this.tutorialsRef.ref.orderBy(options.sortField, options.sortOrder);
+    }
+    if (options.limit) {
+      this.tutorialsRef.ref.limit(16);
+    }
+  }
+  this.tutorialsRef.ref.limit(16);
     return this.tutorialsRef.snapshotChanges().pipe(
       catchError(error => {
         console.error('Erro ao obter fotos:', error);

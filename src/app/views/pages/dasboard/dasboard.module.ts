@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddNewsComponent } from './pages/add-news/add-news.component';
 import { AddCosplayerComponent } from './pages/add-cosplayer/add-cosplayer.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { NgxEditorModule } from 'ngx-editor';
 const routes: Routes = [
 
   {
@@ -39,6 +40,7 @@ declarations: [
 imports: [
   CommonModule,
   SharedModule,
+  NgxEditorModule,
   ReactiveFormsModule,
   RouterModule.forChild(routes),
   NgCircleProgressModule.forRoot({

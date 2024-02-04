@@ -32,7 +32,7 @@ export class NewsComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.newsId = this.route.snapshot.paramMap.get('id');
+    this.newsId = this.route.snapshot.paramMap.get('slug');
     this.loading =true
     this.loadingService.show();
 
@@ -44,7 +44,6 @@ export class NewsComponent implements OnInit {
     }, 1000);
     this.retrieveNews(this.newsId);
     this.getCategory();
-    this.retrievePhotos();
   }
 
   retrieveNews(newsId: string): void {
@@ -58,39 +57,19 @@ export class NewsComponent implements OnInit {
 
       // Filtra as fotos mantendo apenas aquelas que pertencem ao álbum específico
       this.news = data.filter(news => {
-        if (news.id === newsId) {
-         console.log(news.id );
+        if (news.slug === newsId) {
+         console.log(news.slug );
           return true;
         }
         return false;
       });
       this.recentes = data.slice(0, 5);
     });
-   
+
     console.log(this.news);
   }
 
-  retrievePhotos(): void {
-    this.servicePhoto.getAll().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
-      this.uniqueAlbums.clear();
 
-      // Filtra as fotos mantendo apenas uma por álbum
-      this.photos = data.filter(photo => {
-        if (!this.uniqueAlbums.has(photo.album)) {
-          this.uniqueAlbums.add(photo.album);
-          return true;
-        }
-        return false;
-      });
-    });
-    this.photos = this.photos?.slice(0, 12);
-  }
 
   getCategory(): void {
     this.categoryService.getAll().snapshotChanges().pipe(
