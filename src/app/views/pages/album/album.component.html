@@ -93,13 +93,13 @@
                   -->
                   <li><form class="form-inline show-on-page">
                     <div class="form-group">
-                      <label for="show-items">Show:</label>
-                      <select id="show-items" class="select-styled">
-                        <option value="show-15-items">15 items</option>
-                        <option value="show-25-items">25 items</option>
-                        <option value="show-50-items">50 items</option>
-                        <option value="show-75-items">75 items</option>
-                        <option value="show-100-items">100 items</option>
+                      <label for="show-items">Veja:</label>
+                      <select (change)="onPageLimit($event)" id="show-items" class="select-styled">
+                        <option value="40">40 Fotos</option>
+                        <option value="80">80 Fotos</option>
+                        <option value="100">100 Fotos</option>
+                        <option value="150">150 Fotos</option>
+                        <option value="200">200 Fotos</option>
                       </select>
                     </div>
                   </form></li>
@@ -182,7 +182,7 @@
         </div> <!-- /.row -->
 
 
-        <app-paginator
+        <app-paginator *ngIf="paginator"
           [currentPage]="currentPage"
           [totalPages]="totalPages"
           [limit]="pageSize"

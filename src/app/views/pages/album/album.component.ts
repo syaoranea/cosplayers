@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } fr
 import { Router } from '@angular/router';
 import { th } from 'date-fns/locale';
 import { map } from 'rxjs';
+import { PaginatorService } from 'src/app/shared/components/paginator/service/paginator.service';
 import { Photo } from 'src/app/shared/interface/photo';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { LoadingService } from 'src/app/shared/services/loading.service';
@@ -32,10 +33,11 @@ export class AlbumComponent implements OnInit, AfterViewInit {
 
   uniqueAlbums: Set<string> = new Set<string>();
 
-  photos?: Photo[];
-  pageSize = 40;
+  photos: Photo[];
+  pageSize: number =  40;
   currentPage = 1;
   photoData: Photo = new Photo;
+  paginator: boolean = true;
 
   constructor(
     private loadingService: LoadingService,
@@ -43,20 +45,42 @@ export class AlbumComponent implements OnInit, AfterViewInit {
     private authService: AuthService,
     private servicePhoto: PhotosService,
     private route: Router,
+    private service: PaginatorService
   ){}
   ngOnInit(): void {
     this.retrievePhotos();
     this.onLayout();
-
+    this.service.getPageSizeObserver().subscribe((pageSize) => {
+      console.log('Tamanho da página alterado para:', pageSize);
+          this.pageSize = pageSize;
+        });
   }
 
+  onPageLimit(event: any): void {
+    this.paginator = false;
+    this.pageSize = event.target.value;
+    this.service.setPageSize(this.pageSize);
+    this.loadingService.show();
+    setTimeout(() => {
+      //this.totalPages = Math.ceil(this.photos.length / this.pageSize);
+      this.loadingService.hide();
+      this.currentPage = 1;
+      this.loading = true;
+      this.onLayout();
+      this.iUserIn();
+      this.paginator = true;
+
+    }, 3000);
+  }
   get totalPages(): number {
+    this.pageSize = this.service.getPageSize();
     return Math.ceil(this.photos.length / this.pageSize);
   }
 
   get displayedphotos(): any[] {
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
+
+    let startIndex: number = (this.currentPage - 1) * this.pageSize;
+    let endIndex: number = startIndex + Number(this.service.getPageSize());
     return this.photos.slice(startIndex, endIndex);
   }
 
@@ -65,6 +89,7 @@ export class AlbumComponent implements OnInit, AfterViewInit {
     this.loadingService.show();
     setTimeout(() => {
       this.loadingService.hide();
+      this.pageSize = this.service.getPageSize();
       this.loading = true;
       this.onLayout();
       this.iUserIn();
@@ -110,6 +135,7 @@ export class AlbumComponent implements OnInit, AfterViewInit {
     this.currentIndex = index;
   }
   ngAfterViewInit() {
+
     this.loading =true
     this.loadingService.show();
     // Simule uma operação demorada
