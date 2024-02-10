@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { th } from 'date-fns/locale';
 import { map } from 'rxjs';
 import { PaginatorService } from 'src/app/shared/components/paginator/service/paginator.service';
+import { Album } from 'src/app/shared/interface/album';
 import { Photo } from 'src/app/shared/interface/photo';
+import { AlbumService } from 'src/app/shared/services/album.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { PhotosService } from 'src/app/shared/services/photos.service';
@@ -33,7 +35,7 @@ export class AlbumComponent implements OnInit, AfterViewInit {
 
   uniqueAlbums: Set<string> = new Set<string>();
 
-  photos: Photo[];
+  album: Album[];
   pageSize: number =  40;
   currentPage = 1;
   photoData: Photo = new Photo;
@@ -45,7 +47,8 @@ export class AlbumComponent implements OnInit, AfterViewInit {
     private authService: AuthService,
     private servicePhoto: PhotosService,
     private route: Router,
-    private service: PaginatorService
+    private service: PaginatorService,
+    private serviceAlbum: AlbumService
   ){}
   ngOnInit(): void {
     this.retrievePhotos();
@@ -74,14 +77,14 @@ export class AlbumComponent implements OnInit, AfterViewInit {
   }
   get totalPages(): number {
     this.pageSize = this.service.getPageSize();
-    return Math.ceil(this.photos.length / this.pageSize);
+    return Math.ceil(this.album.length / this.pageSize);
   }
 
   get displayedphotos(): any[] {
 
     let startIndex: number = (this.currentPage - 1) * this.pageSize;
     let endIndex: number = startIndex + Number(this.service.getPageSize());
-    return this.photos.slice(startIndex, endIndex);
+    return this.album.slice(startIndex, endIndex);
   }
 
   onPageChanged(pageNumber: number): void {
@@ -97,24 +100,17 @@ export class AlbumComponent implements OnInit, AfterViewInit {
   }
 
   retrievePhotos(): void {
-    if (this.photos) {
+    if (this.album) {
       console.log('Fotos já carregadas anteriormente. Não é necessário carregar novamente.');
       return;
     }
-    this.servicePhoto.getAll().subscribe(data => {
-      this.uniqueAlbums.clear();
+    this.serviceAlbum.getAll().subscribe(data => {
 
       // Filtra as fotos mantendo apenas uma por álbum
-      this.photos = data.filter(photo => {
-        if (!this.uniqueAlbums.has(photo.album + photo.cosplayer)) {
-          this.uniqueAlbums.add(photo.album + photo.cosplayer);
-          return true;
-        }
-        return false;
-      });
+      this.album = data;
       /* this.loadingService.hide(); */
       this.loading = true;
-      console.log(this.photos);
+      console.log(this.album);
     },
       (error) => {
         console.error('Erro ao recuperar fotos2:', error);
@@ -184,7 +180,7 @@ export class AlbumComponent implements OnInit, AfterViewInit {
   }
 
   get quantidadeItens(): number {
-    return this.photos.length;
+    return this.album.length;
   }
 
 }

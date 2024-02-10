@@ -17,4 +17,5 @@ export class Photo {
   category?: string;
   qtdImg?: string;
   banner?: string;
+  slug?: string;
 }

@@ -57,9 +57,6 @@ export class PhotosComponent implements OnInit, AfterViewInit{
     licenseKey: 'EB67CC7A-6AEA-4C6A-BD98-8307493C1577',
   };
 
-
-
-
   photos?: Photo[];
   usuario?: Usuario[];
   uniqueAlbums: Set<string> = new Set<string>();
@@ -84,19 +81,18 @@ export class PhotosComponent implements OnInit, AfterViewInit{
       this.loadingService.hide();
       this.loading = true;
       this.onLayout();
-
     }, 1000); */
     setTimeout(() => {
       this.loadingService.hide();
       this.loading =true
-
     }, 1000);
 
   }
   ngOnInit(): void {
-    this.photoAlbum = this.route.snapshot.paramMap.get('id');
+    this.photoAlbum = this.route.snapshot.paramMap.get('slug');
     this.cosplayerId = this.route.snapshot.paramMap.get('cosplayer');
     console.log(this.photoAlbum);
+    console.log(this.cosplayerId);
     // Agora, productId contém o valor do parâmetro 'id'
 
     this.retrievePhotos(this.photoAlbum, this.cosplayerId);
@@ -123,21 +119,13 @@ export class PhotosComponent implements OnInit, AfterViewInit{
     console.log(index, prevIndex);
   };
 
-  retrievePhotos(albumId: string, cosplayerId: string): void {
-    this.servicePhoto.getAll().subscribe(data => {
-      this.uniqueAlbums.clear();
-
-      // Filtra as fotos mantendo apenas aquelas que pertencem ao álbum específico
-      this.photos = data.filter(photo => {
-        if (photo.album === albumId && photo.cosplayer === cosplayerId) {
-          console.log(photo.cosplayer);
-          this.retrieveUsuarios(photo.cosplayer);
-          return true;
-        }
-        return false;
-      });
-    });
-
+  retrievePhotos(albuns: string,cosplayerId: string): void{
+    this.servicePhoto.getPhotos(cosplayerId, albuns).subscribe(data => {
+      this.photos = data;
+      console.log(this.photos);
+    }
+    );
+    this.retrieveUsuarios(cosplayerId);
   }
 
   retrieveUsuarios(cosplayer: string): void {

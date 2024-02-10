@@ -121,16 +121,16 @@
                   <div class="grid-sizer"></div>
                   <div *ngFor="let data of displayedphotos" class="isotope-item  {{data.class}}">
                     <div class="album-list-item">
-                      <a class="ali-link" [routerLink]="['/photos', data.album, data.cosplayer]"  data-lg-thumbnail="{{data.photoUrl}}">
+                      <a class="ali-link" [routerLink]="['/cosplay',data.cosplayer, data.slug]"  data-lg-thumbnail="{{data.imagem}}">
                         <div class="ali-img-wrap">
-                          <img class="ali-img"  src="{{data.photoUrl}}" alt="{{data.title}}">
+                          <img class="ali-img"  src="{{data.imagem}}" alt="{{data.nome}}">
                         </div>
 
                       </a>
                       <a href="#0" class="album-share " title="Share this album" data-toggle="modal" data-target="#modal-76532457">
 
                         <div class="ali-caption messagem">
-                          <h2 class="ali-title">{{data.title}}</h2>
+                          <h2 class="ali-title">{{data.nome}}</h2>
                           <span class="text-1">{{data.cosplayer}}</span>
                           <div class="ali-meta mt-1">{{data.qtdImg}} fotos <!-- · 134 views --></div>
                         </div>

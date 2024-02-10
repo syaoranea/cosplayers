@@ -3,8 +3,12 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CircleProgressOptions } from 'ng-circle-progress';
 import { Observable } from 'rxjs';
+import { Album } from 'src/app/shared/interface/album';
 import { Photo } from 'src/app/shared/interface/photo';
+import { AlbumService } from 'src/app/shared/services/album.service';
 import { PhotosService } from 'src/app/shared/services/photos.service';
+import { format, set } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 @Component({
   selector: 'app-add-album',
   templateUrl: './add-album.component.html',
@@ -16,12 +20,19 @@ export class AddAlbumComponent implements OnInit {
   percent: number = 0;
   options = new CircleProgressOptions();
   show: boolean = false;
+  data: string;
+  slug: string;
+  urlImage: string;
 
   constructor(
     private fb: FormBuilder,
     private storage: AngularFireStorage,
-    private firestoreService: PhotosService
-    ) {}
+    private firestoreService: PhotosService,
+    private albumService: AlbumService
+    ) {
+      const currentDate = new Date();
+      this.data = format(currentDate, 'd MMMM yyyy', { locale: ptBR }); // 'ptBR' é o código para o idioma português do Brasil
+    }
 
   ngOnInit(): void {
     this.albumForm = this.fb.group({
@@ -42,12 +53,32 @@ export class AddAlbumComponent implements OnInit {
 
   }
 
+  onToSlug(title: string) {
+   return  this.slug = title.toLowerCase()
+      .replace(/ /g, '-')
+      .replace(/[^\w-]+/g, '');
+  }
+
   async onSubmit(): Promise<void> {
     const albumName = this.albumForm.get('albumName').value;
+    const description = this.albumForm.get('description').value;
     const cosplayer = this.albumForm.get('cosplayer').value;
     console.log('Nome do Cosplayer:', cosplayer);
     console.log('Nome do Álbum:', albumName);
     this.show = true;
+    this.onToSlug(description);
+    const albumData: Album = {
+          nome: this.albumForm.get('albumName')?.value,
+          cosplayer: this.albumForm.get('cosplayer')?.value,
+          categoria: this.albumForm.get('category')?.value,
+          class: this.albumForm.get('class')?.value,
+          //imagem: this.urlImage,
+          data: this.data,
+          qtdImg: this.photos.length,
+          slug: "-" + this.slug,
+
+          // Adicione mais campos conforme necessário
+        };
     for (let i = 0; i < this.photos.length; i++) {
       const photoName = `${albumName}_${i + 1}`;
       console.log(`Foto ${i + 1}: ${photoName}`);
@@ -62,8 +93,12 @@ export class AddAlbumComponent implements OnInit {
         category: this.albumForm.get('category')?.value || '',
         class: this.albumForm.get('class')?.value || '',
         banner: this.albumForm.get('banner')?.value || '',
+        slug: "-" + this.slug,
+        updatedAt: new Date(),
         // Adicione mais campos conforme necessário
       };
+
+
 
       const photoPath = `uploads/cosplayer/${cosplayer}/${albumName}/${photoName}`;
       const storageRef = this.storage.ref(photoPath);
@@ -76,23 +111,31 @@ export class AddAlbumComponent implements OnInit {
         // Adicionar dados ao Firestore
         this.firestoreService.create(photoData).then(() => {
           console.log('Foto adicionada com sucesso:', photoData);
+          this.urlImage = downloadUrl;
           // Limpar o formulário ou realizar outras ações após a adição bem-sucedida
+        }).catch(error => {
+          console.error('Erro ao adicionar a foto:', error);
         });
       });
-
-/*
-      let irestoreData: Photo;
-      irestoreData.photoUrl = await storageRef.getDownloadURL();
-Type */
-
-/*
-      const firestoreData: Photo = { ...photoData, photoUrl };
-      await this.firestoreService.create(firestoreData); */
-
     }
 
-    console.log('Fotos enviadas com sucesso!');
-    this.show = false;
+    albumData.imagem = this.urlImage;
+
+    setTimeout(() => {
+      this.albumService.create(albumData)
+      .then(() => {
+        console.log('Notícia cadastrada com sucesso!');
+
+      })
+      .catch((error) => {
+        console.error(error);
+        alert('Erro ao cadastrar a notícia!');
+      });
+      this.albumForm.get('albumName')?.setValue('');
+      this.albumForm.get('description')?.setValue('');
+      console.log('Fotos enviadas com sucesso!');
+      this.show = false;
+    }, 3000);
   }
 }
 

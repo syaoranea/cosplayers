@@ -76,7 +76,13 @@
                     <label for="cosplayer">Cosplayer:</label>
                     <input type="text" id="cosplayer" formControlName="cosplayer" />
                     <label for="category">Categoria:</label>
-                    <input type="text" id="category" formControlName="category" />
+                    <select id="category" name="class" formControlName="category" >
+                      <option value="Anime">Animes</option>
+                      <option value="Games">Games</option>
+                      <option value="Filmes">Filmes</option>
+                      <option value="Series">Series</option>
+                      <option value="HQs">HQs</option>
+                    </select>
                     <label for="class">Classe:</label>
                     <select id="class" name="class" formControlName="class" >
                       <option value="ecchi">Ecchi</option>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 
 import { Photo } from '../interface/photo';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, switchMap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
@@ -11,15 +11,27 @@ export class PhotosService {
   private dbPath = '/photo';
 
   tutorialsRef: AngularFirestoreCollection<Photo>;
+  photoData$: Observable<Photo[]>;
+  cosplayerData$: BehaviorSubject<any>;
 
   constructor(private db: AngularFirestore, private route: Router) {
     this.tutorialsRef = db.collection(this.dbPath);
+    this.cosplayerData$ = new BehaviorSubject(null);
   }
 
-  getAll(options?: { sortField?: string; sortOrder?: 'asc' | 'desc'; limit?: number }): Observable<Photo[]> {
+  getPhotos(cosplay: string, albuns: string): Observable<Photo[]> {
 
+    return this.photoData$ = this.cosplayerData$.pipe(
+      switchMap(cosplayer =>
+        this.db.collection<Photo>('/photo', ref =>
+          ref.where('cosplayer', '==', cosplay).where('slug', '==', albuns)).valueChanges()
+      )
+    );
+  }
 
-    // Apply sorting and limiting if options are provided
+  getAll(options?: { sortField?: string; sortOrder?: 'asc' | 'desc'; limit?: number; cosplayer?: string; slug?:string }): Observable<Photo[]> {
+    let query = this.tutorialsRef.ref;
+  // Apply sorting and limiting if options are provided
   if (options) {
     if (options.sortField && options.sortOrder) {
       this.tutorialsRef.ref.orderBy(options.sortField, options.sortOrder);
@@ -27,9 +39,16 @@ export class PhotosService {
     if (options.limit) {
       this.tutorialsRef.ref.limit(16);
     }
+    if (options.cosplayer) {
+      query.where('cosplayer', '==', options.cosplayer);
+      console.log('cosplayer', options.cosplayer);
+    }
+    if (options.slug) {
+      this.tutorialsRef.ref.where('slug', '==', options.slug);
+    }
   }
-  this.tutorialsRef.ref.limit(16);
-    return this.tutorialsRef.snapshotChanges().pipe(
+
+  return this.tutorialsRef.snapshotChanges().pipe(
       catchError(error => {
         console.error('Erro ao obter fotos:', error);
         this.route.navigate(['/error']);
@@ -38,6 +57,7 @@ export class PhotosService {
       }),
       map(changes =>
         changes.map(c =>
+
           ({ id: c.payload.doc.id, ...c.payload.doc.data() })
         )
       )

@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { map } from 'rxjs';
 import { Category } from 'src/app/shared/interface/category';
 import { Noticia } from 'src/app/shared/interface/noticia';
 import { Photo } from 'src/app/shared/interface/photo';
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { NewsService } from 'src/app/shared/services/news.service';
-import { PhotosService } from 'src/app/shared/services/photos.service';
 
 @Component({
   selector: 'app-blog',
@@ -26,7 +25,7 @@ export class BlogComponent implements OnInit {
     private loadingService: LoadingService,
     private firestoreService: NewsService,
     private categoryService: CategoryService,
-    
+
   ){}
 
   ngOnInit(): void {
