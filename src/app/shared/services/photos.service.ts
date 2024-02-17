@@ -19,12 +19,22 @@ export class PhotosService {
     this.cosplayerData$ = new BehaviorSubject(null);
   }
 
-  getPhotos(cosplay: string, albuns: string): Observable<Photo[]> {
+  getPhotos(cosplay: string, albuns?: string): Observable<Photo[]> {
 
     return this.photoData$ = this.cosplayerData$.pipe(
       switchMap(cosplayer =>
         this.db.collection<Photo>('/photo', ref =>
           ref.where('cosplayer', '==', cosplay).where('slug', '==', albuns)).valueChanges()
+      )
+    );
+  }
+
+  getAllPhotos(cosplay: string, albuns?: string): Observable<Photo[]> {
+
+    return this.photoData$ = this.cosplayerData$.pipe(
+      switchMap(cosplayer =>
+        this.db.collection<Photo>('/photo', ref =>
+          ref.where('cosplayer', '==', cosplay)).valueChanges()
       )
     );
   }

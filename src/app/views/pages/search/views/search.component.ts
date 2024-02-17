@@ -13,12 +13,11 @@ declare var Isotope: any;
 declare var $: any;
 
 @Component({
-  selector: 'app-album',
-  templateUrl: './album.component.html',
-  styleUrls: ['./album.component.scss']
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
 })
-
-export class AlbumComponent implements OnInit, AfterViewInit {
+export class SearchComponent  implements OnInit, AfterViewInit {
 
   @ViewChild('grid') grid!: ElementRef;
 
@@ -185,28 +184,7 @@ export class AlbumComponent implements OnInit, AfterViewInit {
   }
 
   search(): void {
-    this.serviceAlbum.findBySearch(this.formSearch.value.search).subscribe(data => {
-      if (data.length === 0) {
-        this.serviceAlbum.findBySearchCosplayer(this.formSearch.value.search).subscribe(data => {
-          this.album = data;
-          this.loading = true;
-          this.onLayout();
-          this.iUserIn();
-      });
 
-      }
-      console.log('data', data);
-      this.album = data;
-      this.loading = true;
-      this.onLayout();
-      this.iUserIn();
-      (error) => {
-        console.error('Erro ao recuperar fotos:', error);
-        // Trate o erro conforme necessário
-        // Por exemplo, exiba uma mensagem de erro para o usuário
-      }
-
-    });
     console.log('Formulário enviado:', this.formSearch.value.search);
   }
 

@@ -15,6 +15,7 @@ import { UploadListComponent } from './components/upload-list/upload-list.compon
 import { UploadDetailsComponent } from './components/upload-details/upload-details.component';
 import { ErrorComponent } from './views/pages/error/error.component';
 import { SharedModule } from './shared/shared.module';
+import { SearchComponent } from './views/pages/search/views/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { SharedModule } from './shared/shared.module';
     UploadListComponent,
     UploadDetailsComponent,
     ErrorComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
