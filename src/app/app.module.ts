@@ -35,9 +35,6 @@ import { SearchComponent } from './views/pages/search/views/search.component';
     AngularFireDatabaseModule,
     ReactiveFormsModule,
     SharedModule,
-
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]

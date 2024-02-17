@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PaginatorService } from 'src/app/shared/components/paginator/service/paginator.service';
 import { Album } from 'src/app/shared/interface/album';
 import { Photo } from 'src/app/shared/interface/photo';
@@ -40,6 +40,7 @@ export class AlbumComponent implements OnInit, AfterViewInit {
   currentPage = 1;
   photoData: Photo = new Photo;
   paginator: boolean = true;
+  cosplayerId: string;
 
   constructor(
     private loadingService: LoadingService,
@@ -50,8 +51,19 @@ export class AlbumComponent implements OnInit, AfterViewInit {
     private service: PaginatorService,
     private serviceAlbum: AlbumService,
     private fb: FormBuilder,
+    private router: ActivatedRoute,
   ){}
   ngOnInit(): void {
+    this.cosplayerId = this.router.snapshot.paramMap.get('cosplayer');
+    if (this.cosplayerId) {
+      this.serviceAlbum.findBySearchCosplayer(this.cosplayerId).subscribe(data => {
+        this.album = data;
+        this.loading = true;
+        this.onLayout();
+        this.iUserIn();
+        return;
+      });
+    }
     this.formSearch = this.fb.group({
       search: ['']
     });

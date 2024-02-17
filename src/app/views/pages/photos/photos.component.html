@@ -72,10 +72,10 @@
 
                   <!-- Begin author -->
                   <div class="author" style="display: flex; align-items: center;">
-                    <a href="#" class="author-avatar bg-image" style="background-image: url(); background-position: 50% 50%;">
+                    <a [routerLink]="['/album',  usuario[0].cosplayer ]" class="author-avatar bg-image" style="background-image: url(); background-position: 50% 50%;">
                       <img src="{{ usuario[0].avatar }}" style="border-radius: 50%; " alt="avatar">
                     </a>
-                    <a href="" style="margin-top: 20px; margin-left: 10px;" class="author-info">- {{ photos[0].cosplayer }} </a>
+                    <a [routerLink]="['/album',  usuario[0].cosplayer ]" style="margin-top: 20px; margin-left: 10px;" class="author-info">- {{ photos[0].cosplayer }} </a>
                   </div>
                   <!-- End author -->
 
@@ -105,7 +105,7 @@
                     <ul class="list-unstyled">
                       <li>
                         <h4 class="head">Cosplayer:</h4>
-                        <span class="info">{{ usuario[0].cosplayer }}</span>
+                        <a [routerLink]="['/album',  usuario[0].cosplayer ]"  class="info">{{ usuario[0].cosplayer }}</a>
                       </li>
 
                       <li>
