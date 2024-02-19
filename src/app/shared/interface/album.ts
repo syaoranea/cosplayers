@@ -8,5 +8,7 @@ export class Album {
   class?: string;
   cosplayer?: string;
   qtdImg?: number;
-  
+  anime?: string;
+  personagem?: string;
+
 }

@@ -18,4 +18,6 @@ export class Photo {
   qtdImg?: string;
   banner?: string;
   slug?: string;
+  anime?: string;
+  personagem?: string;
 }

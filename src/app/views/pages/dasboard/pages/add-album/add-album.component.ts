@@ -41,6 +41,8 @@ export class AddAlbumComponent implements OnInit {
       cosplayer: ['', [Validators.required, Validators.maxLength(50)]],
       category: ['', [Validators.required, Validators.maxLength(50)]],
       class: ['', [Validators.required, Validators.maxLength(50)]],
+      anime: ['', [Validators.required, Validators.maxLength(50)]],
+      personagem: ['', [Validators.required, Validators.maxLength(50)]],
       banner: [''],
     });
   }
@@ -72,6 +74,8 @@ export class AddAlbumComponent implements OnInit {
           cosplayer: this.albumForm.get('cosplayer')?.value,
           categoria: this.albumForm.get('category')?.value,
           class: this.albumForm.get('class')?.value,
+          anime: this.albumForm.get('anime')?.value,
+          personagem: this.albumForm.get('personagem')?.value,
           //imagem: this.urlImage,
           data: this.data,
           qtdImg: this.photos.length,
@@ -93,6 +97,8 @@ export class AddAlbumComponent implements OnInit {
         category: this.albumForm.get('category')?.value || '',
         class: this.albumForm.get('class')?.value || '',
         banner: this.albumForm.get('banner')?.value || '',
+        anime: this.albumForm.get('anime')?.value || '',
+        personagem: this.albumForm.get('personagem')?.value || '',
         slug: "-" + this.slug,
         updatedAt: new Date(),
         // Adicione mais campos conforme necessário
