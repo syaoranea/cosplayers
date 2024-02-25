@@ -14,4 +14,5 @@ export interface Usuario {
   tiktok?: string;
   suicidegirls?: string;
   patreon?: string;
+  destaque?: string;
 }

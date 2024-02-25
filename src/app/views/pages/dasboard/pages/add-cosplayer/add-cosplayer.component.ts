@@ -29,25 +29,30 @@ export class AddCosplayerComponent {
       suicidegirls: [''],
       onlyfans: [''],
       patreon: [''],
+      destaque: [''],
     });
   }
 
   async onSubmit(): Promise<void> {
 
     const usuarioData: Usuario = {
-      nome: this.usuarioForm.get('nome')?.value,
-      descricao: this.usuarioForm.get('description')?.value,
-      avatar: this.usuarioForm.get('avatar')?.value,
-      cosplayer: this.usuarioForm.get('cosplayer')?.value,
-      category: this.usuarioForm.get('category')?.value,
-      instagram: this.usuarioForm.get('instagram')?.value,
-      website: this.usuarioForm.get('site')?.value,
-      twitter: this.usuarioForm.get('twitter')?.value,
-      onlyfans: this.usuarioForm.get('onlyfans')?.value,
-      patreon: this.usuarioForm.get('patreon')?.value,
-      suicidegirls: this.usuarioForm.get('suicidegirls')?.value,
-      tiktok: this.usuarioForm.get('tiktok')?.value,
+      nome: this.usuarioForm.get('nome').value || null,
+      descricao: this.usuarioForm.get('description').value || null,
+      avatar: this.usuarioForm.get('avatar').value || null,
+      cosplayer: this.usuarioForm.get('cosplayer').value || null,
+      category: this.usuarioForm.get('category').value || null,
+      instagram: this.usuarioForm.get('instagram').value || null,
+      website: this.usuarioForm.get('site').value || null,
+      twitter: this.usuarioForm.get('twitter').value || null,
+      onlyfans: this.usuarioForm.get('onlyfans').value || null,
+      patreon: this.usuarioForm.get('patreon').value || null,
+      suicidegirls: this.usuarioForm.get('suicidegirls').value || null,
+      tiktok: this.usuarioForm.get('tiktok').value || null,
+      destaque: this.usuarioForm.get('destaque').value || null,
     };
+
+    Object.keys(usuarioData).forEach((key) => (usuarioData[key] === null || usuarioData[key] === undefined) && delete usuarioData[key]);
+
 
     // Adicionar dados ao Firestore
     this.firestoreService.create(usuarioData).then(() => {
