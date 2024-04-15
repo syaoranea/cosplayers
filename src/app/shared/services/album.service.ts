@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, catchError, map, switchMap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, combineLatest, map, switchMap, throwError } from 'rxjs';
 import { Album } from '../interface/album';
 
 @Injectable({
@@ -79,5 +79,28 @@ export class AlbumService {
   delete(id: string): Promise<void> {
     return this.tutorialsRef.doc(id).delete();
   }
+
+  searchItems(query: string): Observable<any[]> {
+    const fields = ['cosplayer', 'nome', 'anime', 'personagem'];
+    const queries = fields.map(field =>
+      this.db.collection('/album', ref => ref.where(field, '==', query)).valueChanges({ idField: 'docId' })
+    );
+
+    return combineLatest(queries).pipe(
+      map(arrays => arrays.reduce((acc, cur) => acc.concat(cur), [])),
+      map(items => {
+        const uniqueIds = new Set();
+        const uniqueItems = [];
+        items.forEach(item => {
+          if (!uniqueIds.has(item.docId)) {
+            uniqueIds.add(item.docId);
+            uniqueItems.push(item);
+          }
+        });
+        return uniqueItems;
+      })
+    );
+  }
+
 
 }

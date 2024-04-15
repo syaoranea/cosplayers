@@ -20,4 +20,7 @@ export class Photo {
   slug?: string;
   anime?: string;
   personagem?: string;
+  cosplayer_lowercase?: string;
+  anime_lowercase?: string;
+  personagem_lowercase?: string;
 }

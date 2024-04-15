@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { PaginatorService } from 'src/app/shared/components/paginator/service/paginator.service';
 import { Album } from 'src/app/shared/interface/album';
 import { Photo } from 'src/app/shared/interface/photo';
@@ -41,6 +42,7 @@ export class AlbumComponent implements OnInit, AfterViewInit {
   photoData: Photo = new Photo;
   paginator: boolean = true;
   cosplayerId: string;
+  results$: Observable<any[]>;
 
   constructor(
     private loadingService: LoadingService,
@@ -196,30 +198,19 @@ export class AlbumComponent implements OnInit, AfterViewInit {
     return this.album.length;
   }
 
-  search(): void {
-    this.serviceAlbum.findBySearch(this.formSearch.value.search).subscribe(data => {
-      if (data.length === 0) {
-        this.serviceAlbum.findBySearchCosplayer(this.formSearch.value.search).subscribe(data => {
-          this.album = data;
-          this.loading = true;
-          this.onLayout();
-          this.iUserIn();
-      });
+  search() {
+    console.log(this.formSearch.value.search);
+    this.serviceAlbum.searchItems(this.formSearch.value.search).subscribe(items => {
+      this.album = items;
+      console.log(this.album);
+    });
 
-      }
-      console.log('data', data);
-      this.album = data;
+    setTimeout(() => {
+      this.loadingService.hide();
       this.loading = true;
       this.onLayout();
       this.iUserIn();
-      (error) => {
-        console.error('Erro ao recuperar fotos:', error);
-        // Trate o erro conforme necessário
-        // Por exemplo, exiba uma mensagem de erro para o usuário
-      }
-
-    });
-    console.log('Formulário enviado:', this.formSearch.value.search);
+    }, 3000);
   }
 
 }

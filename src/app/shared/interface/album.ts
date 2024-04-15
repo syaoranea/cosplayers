@@ -10,5 +10,8 @@ export class Album {
   qtdImg?: number;
   anime?: string;
   personagem?: string;
+  cosplayer_lowercase?: string;
+  anime_lowercase?: string;
+  personagem_lowercase?: string;
 
 }
