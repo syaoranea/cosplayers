@@ -13,5 +13,5 @@ export class Album {
   cosplayer_lowercase?: string;
   anime_lowercase?: string;
   personagem_lowercase?: string;
-
+  updatedAt?: Date;
 }

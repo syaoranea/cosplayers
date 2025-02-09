@@ -83,6 +83,7 @@ export class AddAlbumComponent implements OnInit {
           data: this.data,
           qtdImg: this.photos.length,
           slug: "-" + this.slug,
+          updatedAt: new Date(),
 
           // Adicione mais campos conforme necessário
         };

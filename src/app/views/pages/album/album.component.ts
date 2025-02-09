@@ -44,6 +44,9 @@ export class AlbumComponent implements OnInit, AfterViewInit {
   cosplayerId: string;
   results$: Observable<any[]>;
   modal: boolean = false;
+  options: {
+    sortOrder: 'desc'
+  }
   constructor(
     private loadingService: LoadingService,
     private el: ElementRef,
@@ -119,7 +122,7 @@ export class AlbumComponent implements OnInit, AfterViewInit {
   }
 
   retrievePhotos(): void {
-    this.serviceAlbum.getAll().subscribe(data => {
+    this.serviceAlbum.getAll(this.options).subscribe(data => {
 
       // Filtra as fotos mantendo apenas uma por álbum
       this.album = data;
