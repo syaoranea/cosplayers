@@ -50,6 +50,7 @@
     </section>
     <!-- End page header section -->
 
+
     <!-- ============================
     ///// Begin content section /////
     ============================= -->
@@ -73,7 +74,11 @@
                   <!-- End isotope filter toggle button -->
 
                   <h2 class="filter-heading">Filters</h2>
-
+ <div *ngIf="modal">
+      <p>Você tem mais de 18 anos?</p>
+      <button type="button" class="btn btn-primary" (click)="confirmAge(true)">Sim</button>
+      <button type="button" class="btn btn-secondary" (click)="confirmAge(false)">Não</button>
+    </div>
                   <!-- Begin isotope filter links -->
                   <div class="isotope-filter-links collapse navbar-collapse no-padding" id="isotope-filter-collapse">
                     <a (click)="filterAll()" data-filter="*">all</a>
@@ -198,7 +203,23 @@
 
       </div> <!-- /.container -->
     </section>
+
     <!-- End content section -->
+<!-- Age Verification Modal -->
+<!-- <div ngIf="modal" id="age-verification-modal" class="custom-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-center">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Verificação de Idade</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>Você tem mais de 18 anos?</p>
+        <button type="button" class="btn btn-primary" (click)="confirmAge(true)">Sim</button>
+        <button type="button" class="btn btn-secondary" (click)="confirmAge(false)">Não</button>
+      </div>
+    </div>
+</div>nd Age Verification Modal -->
 
   <div class="footer">
     <app-footer></app-footer>

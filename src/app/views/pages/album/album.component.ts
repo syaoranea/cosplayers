@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -43,7 +43,7 @@ export class AlbumComponent implements OnInit, AfterViewInit {
   paginator: boolean = true;
   cosplayerId: string;
   results$: Observable<any[]>;
-
+  modal: boolean = false;
   constructor(
     private loadingService: LoadingService,
     private el: ElementRef,
@@ -54,6 +54,7 @@ export class AlbumComponent implements OnInit, AfterViewInit {
     private serviceAlbum: AlbumService,
     private fb: FormBuilder,
     private router: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ){}
   ngOnInit(): void {
     this.cosplayerId = this.router.snapshot.paramMap.get('cosplayer');
@@ -181,10 +182,10 @@ export class AlbumComponent implements OnInit, AfterViewInit {
     this.isotope = new Isotope(this.grid.nativeElement);
   }
 
-  filterElements(selector: string) {
+/*   filterElements(selector: string) {
     this.isotope.arrange({ filter: `.${selector}` });
     this.filter = true;
-  }
+  } */
 
   filterAll() {
     this.isotope.arrange({ filter: '*' });
@@ -212,5 +213,29 @@ export class AlbumComponent implements OnInit, AfterViewInit {
       this.iUserIn();
     }, 3000);
   }
+
+  filterElements(selector: string) {
+    if (selector === 'ecchi') {
+      // Show the age verification modal
+      this.modal = true;
+    } else {
+      this.isotope.arrange({ filter: `.${selector}` });
+      this.filter = true;
+    }
+  }
+
+
+  confirmAge(isAdult: boolean) {
+    if (isAdult) {
+      // User confirmed they are over 18, display Ecchi images
+      this.modal=false;
+      this.isotope.arrange({ filter: '.ecchi' });
+    } else {
+      // User is not over 18, redirect to home page
+      this.route.navigate(['/']); // Adjust this route according to your app's routing
+      this.modal=false;
+    }
+  }
+
 
 }
