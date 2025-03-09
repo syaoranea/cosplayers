@@ -218,6 +218,7 @@ export class AlbumComponent implements OnInit, AfterViewInit {
   }
 
   filterElements(selector: string) {
+
     if (selector === 'ecchi') {
       // Show the age verification modal
       this.modal = true;

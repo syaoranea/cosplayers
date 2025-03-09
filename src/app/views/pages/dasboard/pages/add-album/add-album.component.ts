@@ -43,6 +43,7 @@ export class AddAlbumComponent implements OnInit {
       class: ['', [Validators.required, Validators.maxLength(50)]],
       anime: ['', [Validators.required, Validators.maxLength(50)]],
       personagem: ['', [Validators.required, Validators.maxLength(50)]],
+      adulto:  [],
       banner: [''],
     });
   }
@@ -80,6 +81,7 @@ export class AddAlbumComponent implements OnInit {
           anime_lowercase: this.albumForm.get('anime').value.toLowerCase(),
           personagem_lowercase: this.albumForm.get('personagem').value.toLowerCase(),
           //imagem: this.urlImage,
+          adulto: this.albumForm.get('adulto')?.value ? true : false,
           data: this.data,
           qtdImg: this.photos.length,
           slug: "-" + this.slug,

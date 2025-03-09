@@ -9,6 +9,7 @@ export class Album {
   cosplayer?: string;
   qtdImg?: number;
   anime?: string;
+  adulto?: boolean
   personagem?: string;
   cosplayer_lowercase?: string;
   anime_lowercase?: string;
